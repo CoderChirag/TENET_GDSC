@@ -13,14 +13,14 @@ router.get(
 router.get(
 	'/auth/google/redirect',
 	passport.authenticate('google', {
-		failureRedirect: 'http://localhost:2948/',
+		failureRedirect: '/',
 		failureMessage: true,
 	}),
 	function (req, res) {
 		// req.logIn(req.user, err=>{
 		//   if (err) throw err;
 		// console.log("req.user", req.user) })
-		res.redirect('http://localhost:2948/');
+		res.redirect('/');
 	}
 );
 
