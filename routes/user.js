@@ -13,7 +13,8 @@ router.get(
 router.get(
 	'/auth/google/redirect',
 	passport.authenticate('google', {
-		failureRedirect: 'http://localhost:2948/login',
+		failureRedirect: 'http://localhost:2948/',
+		failureMessage: true,
 	}),
 	function (req, res) {
 		// req.logIn(req.user, err=>{
@@ -22,4 +23,5 @@ router.get(
 		res.redirect('http://localhost:2948/');
 	}
 );
+
 module.exports = router;

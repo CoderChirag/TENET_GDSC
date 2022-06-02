@@ -11,11 +11,11 @@ const PORT = process.env.port || 2948;
 
 const app = express();
 
-process.on('uncaughtException', err => {
-	console.log('UNCAUGHT EXCEPTION, APP SHUTTING NOW!!');
-	console.log(err.message, err.name);
-	process.exit(1);
-});
+// process.on('uncaughtException', err => {
+// 	console.log('UNCAUGHT EXCEPTION, APP SHUTTING NOW!!');
+// 	console.log(err.message, err.name);
+// 	process.exit(1);
+// });
 
 app.use(express.json());
 app.use(
@@ -23,7 +23,7 @@ app.use(
 		extended: true,
 	})
 );
-// app.set('trust proxy', 1);
+app.set('trust proxy', 1);
 app.use(
 	session({
 		secret: process.env.SESSION_SECRET_CODE,
@@ -44,7 +44,16 @@ app.use('/user', userRoutes);
 
 app.get('/', (req, res, next) => {
 	console.log(req.isAuthenticated());
-	res.send('Hii');
+	let user = '';
+	if (req.isAuthenticated()) {
+		user = req.user.username;
+	}
+	if (req.session.messages) {
+		let msg = req.session.messages[0];
+		delete req.session.messages;
+		return res.send(msg);
+	}
+	res.send(`Hii ${user}`);
 });
 
 mongoose
@@ -63,5 +72,5 @@ mongoose
 		});
 	})
 	.catch(err => {
-		console.log(`Could not connect to the DB because ${error}`);
+		console.log(`Could not connect to the DB because ${err}`);
 	});
