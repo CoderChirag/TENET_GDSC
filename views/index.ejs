@@ -5,19 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tenet</title>
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/style.css">
 
 </head>
 <body>
+
+
     <nav>
-        <div class="container">
+        <div class="container desktop">
             <div class="row justify-content-between">
                 <div class="col-md-3">
                     <img src="/assets/logo 1.svg" alt="Image not available">    
-
                 </div>
-                <div class="col-md-7 my-auto">
+                <div class="col-md-9 my-auto">
                     <ul class="navList">
                         <li><a href="#">Home</a></li>
                         <li><a href="#">Dashboard</a></li>
@@ -29,7 +32,25 @@
                 </div>
             </div>
         </div>
+        <div class=" container mobile">
+            <div onclick="dropDown()" class="ham">
+                <i class="fa fa-bars"></i>
+            </div>
+            <div class="col-md-3 text-center">
+                <img src="/assets/logo 1.svg" alt="Image not available">    
+            </div>
+            <div class="dropDown">
+                <a href="#">Home</a>
+                <a href="#">Dashboard</a>
+                <a href="#Tracks">Tracks</a>
+                <a href="#Prizes">Prizes</a>
+                <a href="#">Sponsors</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
     </nav>
+
+
     <section class="main">
         <div class="container h-100">
             <div class="row h-100">
@@ -44,7 +65,7 @@
                         REGISTER
                     </button>
                 </div>
-                <div class="col-md-6 h-75 my-auto">
+                <div class="col-md-6 h-50 my-auto">
                     <div class="dummy-div mx-auto">
                         This needs to be replaced
                     </div>
@@ -215,6 +236,7 @@
             </div>
         </div>
     </section>
+    <script src="js/script.js"></script>
 </body>
 </html>
     
