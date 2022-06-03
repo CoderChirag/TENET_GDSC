@@ -1,27 +1,15 @@
 var express = require('express');
 var router = express.Router();
-const passport = require('passport');
 
-// const User = require('../models/GoogleuserSchema');
 require('../utils/passport');
+const userController = require('../controllers/user');
 
-router.get(
-	'/auth/google',
-	passport.authenticate('google', { scope: ['profile', 'email'] })
-);
+router.get('/auth/google', userController.getGoogleAuth);
 
 router.get(
 	'/auth/google/redirect',
-	passport.authenticate('google', {
-		failureRedirect: '/',
-		failureMessage: true,
-	}),
-	function (req, res) {
-		// req.logIn(req.user, err=>{
-		//   if (err) throw err;
-		// console.log("req.user", req.user) })
-		res.redirect('/');
-	}
+	userController.getGoogleAuthRedirect,
+	userController.getGoogleAuthRedirectHandler
 );
 
 module.exports = router;

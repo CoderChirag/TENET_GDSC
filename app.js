@@ -3,9 +3,11 @@ const express = require('express');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('passport');
+const path = require('path');
 
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
+const tenetRoutes = require('./routes/tenet');
 
 const PORT = process.env.port || 2948;
 
@@ -17,13 +19,17 @@ const app = express();
 // 	process.exit(1);
 // });
 
+app.set('trust proxy', 1);
+app.set('view engine', 'ejs');
+app.set('views', 'views');
+
 app.use(express.json());
 app.use(
 	express.urlencoded({
 		extended: true,
 	})
 );
-app.set('trust proxy', 1);
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(
 	session({
 		secret: process.env.SESSION_SECRET_CODE,
@@ -35,26 +41,12 @@ app.use(
 		},
 	})
 );
-
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
-
-app.get('/', (req, res, next) => {
-	console.log(req.isAuthenticated());
-	let user = '';
-	if (req.isAuthenticated()) {
-		user = req.user.username;
-	}
-	if (req.session.messages) {
-		let msg = req.session.messages[0];
-		delete req.session.messages;
-		return res.send(msg);
-	}
-	res.send(`Hii ${user}`);
-});
+app.use('/', tenetRoutes);
 
 mongoose
 	.connect(
