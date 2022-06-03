@@ -30,8 +30,6 @@ nav{
 }
 .navList li{
     display: inline-block;
-    margin-left: 1.5rem ;
-    margin-right: 1.5rem ;
 }
 .navList li a{
     position: relative;
@@ -177,3 +175,199 @@ nav{
     border-radius: 10px;
     background-image: linear-gradient(90deg, #9c27b040, #4800c940);
 }
+
+
+
+
+footer{
+    background-color: #0f001a;
+}
+.footer_sections {
+    font-family: "Poppins", sans-serif;
+    width: 80vw;
+    margin: 30px auto;
+    display: flex;
+    color: #fff;
+    justify-content: space-between;
+  }
+  .footer_section {
+    font-family: "Poppins", sans-serif;
+    width: 80vw;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+  }
+  .footer_sections img {
+    height: 40px;
+  }
+  .social_icons {
+    color: #747477;
+  }
+  .social_icons i {
+    font-size: 25px;
+    margin-left: 5px;
+  }
+  .footer_section_1 {
+    /* background-color: #17171d; */
+    border-radius: 10px;
+    margin: 10px;
+    padding: 20px;
+    /* padding-left: 0; */
+    width: 430px;
+  }
+  .prize_section_sponser {
+    height: 90px !important;
+    width: 120px !important;
+  }
+  .footer_section_1_content {
+    display: flex;
+    align-items: flex-start;
+  }
+  .footer_section_1_content img {
+    margin-right: 10px;
+  }
+  .footer_section_1_content p {
+    color: #ffffff;
+  }
+  .footer_section h1 {
+    font-size: 20px;
+    color: #fff;
+  }
+  .footer_section_2 {
+    text-align: right;
+    margin-top: 110px;
+    margin-left: 100px;
+  }
+  .footer_section_2 a {
+    color: #c2c2b7;
+  }
+  .footer_section img {
+    width: 40px;
+  }
+  .footer_section_3 {
+    width: 80vw;
+    margin: 20px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer_section_3 img {
+    width: 300px;
+  }
+  /* media queries */
+  @media (max-width: 1200px) {
+    .prize_section_card.sponsors {
+      padding: 40px 18px;
+    }
+    .prize_section_card.sponsors p {
+      width: 100%;
+      font-size: 0.9rem;
+    }
+  }
+  @media (max-width: 768px) {
+    .prize_section_card {
+      width: 46%;
+    }
+    .prize_section_detail {
+      width: 85%;
+    }
+    .footer_section {
+      display: block;
+      margin: auto;
+    }
+    .footer_section_1 {
+      margin: 10px auto 20px auto;
+      max-width: 600px;
+      width: 600px;
+    }
+    .footer_section_2 {
+      text-align: center;
+      margin-left: 0px;
+      margin-top: 0px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer_section_3 p {
+      font-size: 10px;
+    }
+    .footer_section_3 img {
+      width: 180px;
+    }
+  }
+  @media (max-width: 692px) {
+    .prize_section_card h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    .prize_section_card p {
+      font-size: 1rem;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    .footer_section_1 {
+      margin: 10px auto 20px auto;
+      max-width: 500px;
+      width: 500px;
+    }
+  }
+  @media (max-width: 590px) {
+    .title {
+      margin-bottom: 0;
+    }
+    .prize_section_detail {
+      margin-bottom: 20px;
+    }
+    .prize_section_card {
+      width: 80%;
+      margin-bottom: 20px;
+    }
+    .prize_section_card div.img {
+      max-height: 200px;
+    }
+    .prize_section_detail {
+      width: 100%;
+    }
+    .prize_section_card.sponsors {
+      padding: 20px 25px;
+    }
+    .prize_section_card .sponsors_img {
+      width: 100%;
+    }
+    .footer_section_1 {
+      max-width: 410px;
+      width: 410px;
+    }
+  }
+  @media (max-width: 472px) {
+    .prize_section_card {
+      width: 100%;
+    }
+    .prize_section_card div.img {
+      max-height: 180px;
+    }
+    .footer_section_1 {
+      max-width: 350px;
+      width: 350px;
+    }
+  }
+  @media (max-width: 376px) {
+    .footer_section_1 {
+      max-width: 280px;
+      width: 280px;
+    }
+    .footer_section_3 {
+      display: block;
+      padding-left: 80px;
+    }
+  }
+  @media (max-width: 327px) {
+    .footer_section_1 {
+      max-width: 250px;
+      width: 250px;
+    }
+    .footer_section_3 {
+      display: block;
+      padding-left: 30px;
+    }
+  }
