@@ -30,8 +30,6 @@ nav{
 }
 .navList li{
     display: inline-block;
-    margin-left: 1.5rem ;
-    margin-right: 1.5rem ;
 }
 .navList li a{
     position: relative;
