@@ -1,0 +1,144 @@
+:root{
+    --purple-shade: #ff00ee;
+}
+
+*{
+    padding: 0%;
+    margin: 0%;
+    scroll-behavior: smooth;
+    /* font-family: ; */
+}
+body{
+    background-image: radial-gradient(#260e37, black);
+    background-size: 100vw 100vh;
+    overflow-x: hidden;
+    color: white;
+}
+nav{
+    position: fixed;
+    width: 100%;
+    background-color: #0f001a;
+    z-index: 2;
+
+}
+.navList{
+    margin: 0%;
+    padding: 0%;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.4rem;
+}
+.navList li{
+    display: inline-block;
+    margin-left: 1.5rem ;
+    margin-right: 1.5rem ;
+}
+.navList li a{
+    position: relative;
+    text-decoration: none;
+    transition: all 0.3s;
+    color: white;
+}
+.navList li a::after{
+    position: absolute;
+    left: 0%;
+    bottom: -20%;
+    content: "";
+    height: 10%;
+    width: 0%;
+    border-radius: 100px;
+    background-color: var(--purple-shade);
+    transition: all 0.3s;
+
+}
+.navList li:hover a{
+    width: 100%;
+    color: var(--purple-shade);
+}
+.navList li:hover a::after{
+    width: 100%;
+}
+.Active{
+    width: 100%;
+    color: var(--purple-shade);
+}
+.Active a::after{
+    width: 100%;
+}
+
+
+
+.main{
+    height: 100vh;
+    color: white;
+}
+.main h1 strong{
+    color: var(--purple-shade);
+}
+.main h1{
+    font-size: 4rem;
+    text-shadow: 10px 15px 20px black;
+}
+.btn-purple{
+    width: 40%;
+    color: white;
+    background-image: linear-gradient(120deg, var(--purple-shade), #340099);
+}
+.dummy-div{
+    height: 100%;
+    width: 100%;
+    border: solid white;
+    background-color: white;
+}
+
+
+
+.AboutUs h2{
+    color: var(--purple-shade);
+}
+
+
+
+
+
+.Tracks h2{
+    color: var(--purple-shade);
+}
+
+.Tracks .row{
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+.Tracks .row:nth-child(even){
+    flex-direction: row-reverse;
+}
+.btn-purple-outline{
+    width: 30%;
+    margin: 0%;
+    padding: 0%;
+    background-image: linear-gradient(90deg, var(--purple-shade), #8500ff);
+    padding: 1px;
+}
+    
+.dark-bg{background-color: black;color: transparent; border-radius: 3px;}
+.btn-purple-outline .btn-text{
+    background-image: linear-gradient(90deg, var(--purple-shade), #8500ff);
+    padding: 4%;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    border-radius: 3px;
+    border: 2px solid transparent;
+}
+
+.Prizes h2{
+    color: var(--purple-shade);
+}
+
+.dummy-prize{
+    margin-top: 2rem;
+    height: 40vh;
+    border-radius: 10px;
+    background-image: linear-gradient(90deg, #9c27b040, #4800c940);
+}
