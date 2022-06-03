@@ -11,9 +11,13 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser((id, done) => {
 	console.log('DESERIALISING', id);
-	Googleuser.findById(id, (err, user) => {
-		done(err, user);
-	});
+	Googleuser.findById(id)
+		.then(user => {
+			done(null, user);
+		})
+		.catch(err => {
+			done(err, null);
+		});
 });
 
 passport.use(

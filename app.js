@@ -7,7 +7,10 @@ const path = require('path');
 
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
+const eventsRoutes = require('./routes/events');
 const tenetRoutes = require('./routes/tenet');
+const adminRoutes = require('./routes/admin');
+const errorController = require('./controllers/error');
 
 const PORT = process.env.port || 2948;
 
@@ -19,7 +22,7 @@ const app = express();
 // 	process.exit(1);
 // });
 
-app.set('trust proxy', 1);
+app.set('trust proxy', true);
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
@@ -46,7 +49,10 @@ app.use(passport.session());
 
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
+app.use('/events', eventsRoutes);
+app.use('/admin', adminRoutes);
 app.use('/', tenetRoutes);
+app.use(errorController.get404);
 
 mongoose
 	.connect(

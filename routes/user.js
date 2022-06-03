@@ -12,4 +12,7 @@ router.get(
 	userController.getGoogleAuthRedirectHandler
 );
 
+router.get('/dashboard', userController.getDashboard);
+router.get('/events', userController.getEvents);
+
 module.exports = router;

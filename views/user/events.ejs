@@ -1,0 +1,43 @@
+<!-- user: {
+  registeredEvents: { events: [] },
+  img: 'https://lh3.googleusercontent.com/a-/AOh14GjSzc-vqvpDpho9J5FanjztwlljAeTHk8RKL8PZ=s96-c',
+  isAdmin: false,
+  _id: 629a5c05bba352690c5c7065,
+  username: 'CHIRAG JAIN',
+  email: 'chirag0174.be20@chitkara.edu.in',
+  date: 2022-06-03T19:07:49.668Z,
+  createdAt: 2022-06-03T19:07:49.672Z,
+  updatedAt: 2022-06-03T19:07:49.672Z,
+  __v: 0
+
+  events: [ { _id: 629a5d95253d147052113dc8, name: 'test' } ]
+} -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>
+        Hii <%= user.name %>
+    </h1>
+    <form action="/events/register/629a5d95253d147052113dc8" method="POST">
+        <button type="submit">Register test</button>
+    </form>
+    <form action="/events/register/629a816f2dfc38f2c94b1577" method="POST">
+        <button type="submit">Register test2</button>
+    </form>
+    <form action="/events/unregister/629a5d95253d147052113dc8" method="POST">
+        <button type="submit">Unregister test</button>
+    </form>
+    <form action="/events/unregister/629a816f2dfc38f2c94b1577" method="POST">
+        <button type="submit">Unregister test2</button>
+    </form>
+</body>
+
+</html>
