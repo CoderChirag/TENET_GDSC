@@ -14,6 +14,17 @@ body{
     overflow-x: hidden;
     color: white;
 }
+html::-webkit-scrollbar{
+  width: 10px;
+
+}
+html::-webkit-scrollbar-thumb{
+  border-radius: 10px;
+  background: #ff00eeae;
+}
+html::-webkit-scrollbar-track{
+  background: #0f001a;
+}
 /* .container{
     max-width: 104rem;
     margin: 0 auto;
@@ -256,6 +267,7 @@ footer{
   /* media queries */
 
   @media (max-width: 768px) {
+    
     .footer_section {
       display: block;
       margin: auto;
@@ -321,4 +333,51 @@ footer{
       display: block;
       padding-left: 30px;
     }
+  }
+
+
+  .bg-purple-dark{
+    background-color: #0f001a;
+  }
+  .registeredEvents{
+    margin-top: 1rem;
+    position: relative;
+    border: 1px 0px 0px 0px white solid;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+  .registeredEvents::-webkit-scrollbar{
+    width: 10px;
+  }
+  .registeredEvents::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    background-color: #ff00eeae;
+  }
+  .registeredEvents::-webkit-scrollbar-track{
+    background-color: #0f001a;
+  }
+  .Event{
+    position: relative;
+  }
+  .Event img{
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .eventSheet{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color:#0f001abb;
+    overflow: hidden;
+    width: 100%;
+    height: 0;
+    transition: .5s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .registeredEvents .Event:hover .eventSheet{
+    height: 100%;
   }
