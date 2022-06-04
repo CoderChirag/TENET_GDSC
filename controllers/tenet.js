@@ -27,6 +27,8 @@ exports.getIndex = (req, res) => {
 			}
 			console.log('User Data: ');
 			console.log(user);
+			console.log('User registered Events: ');
+			console.log(user.registeredEvents.events);
 			return res.render('index', {
 				isAuthenticated: true,
 				user,
