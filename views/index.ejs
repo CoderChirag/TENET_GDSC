@@ -1,16 +1,72 @@
+<!-- 
+    -------- 3 Data Variables Available here => 1.) isAuthenticated: Boolean, 2.) events: Array, 3.) user: Object
+    1.) isAuthenticated: true or false
+    2.) events: Data available no matter user is logged in or not
+        [
+            { _id: 629a5d95253d147052113dc8, name: 'test' },
+            { _id: 629a816f2dfc38f2c94b1577, name: 'test2' },
+            { _id: 629b2f20698956b4e1d4f156, name: 'test3' },
+            { _id: 629b2f2f698956b4e1d4f157, name: 'test4' },
+            { _id: 629b2f3e698956b4e1d4f158, name: 'test5' },
+            { _id: 629b2f4b698956b4e1d4f159, name: 'test6' }
+        ]
+    3.) user: empty object if not authenticated
+        {
+            registeredEvents: { 
+                events: [ 
+                    {
+                        _id: 629a8a16485fb41af8da4c53,
+                        score: 2,
+                        event: {
+                            _id: 629a5d95253d147052113dc8,
+                            name: 'test'
+                        },
+                    } ,
+                    {
+                        _id: 629a8a1c485fb41af8da4c59,
+                        score: 5,
+                        event: {
+                            _id: 629a816f2dfc38f2c94b1577,
+                            name: 'test2'
+                        }
+                    }
+                ] 
+            },
+            img: 'https://lh3.googleusercontent.com/a-/AOh14GjSzc-vqvpDpho9J5FanjztwlljAeTHk8RKL8PZ=s96-c',
+            isAdmin: true,
+            _id: 629a5c05bba352690c5c7065,
+            username: 'CHIRAG JAIN',
+            email: 'chirag0174.be20@chitkara.edu.in',
+            date: 2022-06-03T19:07:49.668Z,
+            createdAt: 2022-06-03T19:07:49.672Z,
+            updatedAt: 2022-06-03T22:32:27.883Z,
+            __v: 0
+        }
+
+    ------- Routes -----------
+    1.) Login Route: GET: /user/auth/google
+    2.) Logout Route: GET: /auth/logout
+    3.) Event Register Route: POST: /events/register/:eventId  => No body required          // Both routes should only be used if user is loggedIn
+    4.) Event Unregister Route: POST: /events/unregister/:eventId => No body required          else user should be redirected to login route
+                                            // If these routes are accessed without authentication, a report would be generated in the backend automatically .
+ -->
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tenet</title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/css/style.css">
 
 </head>
+
 <body>
 
 
@@ -18,7 +74,7 @@
         <div class="container desktop">
             <div class="row justify-content-between">
                 <div class="col-md-2">
-                    <img src="/assets/logo 1.svg" alt="Image not available">    
+                    <img src="/assets/logo 1.svg" alt="Image not available">
                 </div>
                 <div class="col-md-6 my-auto">
                     <ul class="navList">
@@ -31,7 +87,7 @@
                     </ul>
                 </div>
                 <div class="col-md-3 my-auto">
-                    <img class="w-100" src="/assets/media/GDSClogo.png" alt="Image not available">    
+                    <img class="w-100" src="/assets/media/GDSClogo.png" alt="Image not available">
                 </div>
             </div>
         </div>
@@ -40,8 +96,8 @@
                 <i class="fa fa-bars"></i>
             </span>
             <span class="mx-auto text-right">
-                <img src="/assets/logo 1.svg" alt="Image not available">    
-                <img class="w-50" src="/assets/media/GDSClogo.png" alt="Image not available"> 
+                <img src="/assets/logo 1.svg" alt="Image not available">
+                <img class="w-50" src="/assets/media/GDSClogo.png" alt="Image not available">
             </span>
             <div class="dropDown">
                 <a href="#">Home</a>
@@ -82,7 +138,11 @@
             <div class="text-center">
                 <h2 class="py-5">ABOUT US</h2>
                 <p>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam itaque, iste dolor obcaecati quasi adipisci ratione, pariatur rerum dolorem, optio distinctio magnam? Pariatur illo distinctio suscipit hic atque itaque dolorem repudiandae soluta quas corporis. Iste unde blanditiis reprehenderit inventore enim totam distinctio similique voluptates reiciendis, explicabo at fuga? Perferendis aperiam id obcaecati cum quisquam accusamus modi quasi aliquam consequatur amet.
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam itaque, iste dolor obcaecati
+                    quasi adipisci ratione, pariatur rerum dolorem, optio distinctio magnam? Pariatur illo distinctio
+                    suscipit hic atque itaque dolorem repudiandae soluta quas corporis. Iste unde blanditiis
+                    reprehenderit inventore enim totam distinctio similique voluptates reiciendis, explicabo at fuga?
+                    Perferendis aperiam id obcaecati cum quisquam accusamus modi quasi aliquam consequatur amet.
                 </p>
             </div>
         </div>
@@ -100,7 +160,10 @@
                         TITLE
                     </h4>
                     <p class="my-4">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto fugit nam facilis saepe minus rerum quos, ipsa molestiae asperiores odit tempore, facere ipsum ducimus expedita quis aliquam natus omnis. Quisquam ipsa fugit eum possimus iste architecto mollitia quasi alias officiis!
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto fugit nam facilis saepe
+                        minus rerum quos, ipsa molestiae asperiores odit tempore, facere ipsum ducimus expedita quis
+                        aliquam natus omnis. Quisquam ipsa fugit eum possimus iste architecto mollitia quasi alias
+                        officiis!
                     </p>
                     <button class="btn btn-purple-outline">
                         <div class="dark-bg">
@@ -121,7 +184,10 @@
                         TITLE
                     </h4>
                     <p class="my-4">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto fugit nam facilis saepe minus rerum quos, ipsa molestiae asperiores odit tempore, facere ipsum ducimus expedita quis aliquam natus omnis. Quisquam ipsa fugit eum possimus iste architecto mollitia quasi alias officiis!
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto fugit nam facilis saepe
+                        minus rerum quos, ipsa molestiae asperiores odit tempore, facere ipsum ducimus expedita quis
+                        aliquam natus omnis. Quisquam ipsa fugit eum possimus iste architecto mollitia quasi alias
+                        officiis!
                     </p>
                     <button class="btn btn-purple-outline">
                         <div class="dark-bg">
@@ -142,7 +208,10 @@
                         TITLE
                     </h4>
                     <p class="my-4">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto fugit nam facilis saepe minus rerum quos, ipsa molestiae asperiores odit tempore, facere ipsum ducimus expedita quis aliquam natus omnis. Quisquam ipsa fugit eum possimus iste architecto mollitia quasi alias officiis!
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto fugit nam facilis saepe
+                        minus rerum quos, ipsa molestiae asperiores odit tempore, facere ipsum ducimus expedita quis
+                        aliquam natus omnis. Quisquam ipsa fugit eum possimus iste architecto mollitia quasi alias
+                        officiis!
                     </p>
                     <button class="btn btn-purple-outline">
                         <div class="dark-bg">
@@ -163,7 +232,10 @@
                         TITLE
                     </h4>
                     <p class="my-4">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto fugit nam facilis saepe minus rerum quos, ipsa molestiae asperiores odit tempore, facere ipsum ducimus expedita quis aliquam natus omnis. Quisquam ipsa fugit eum possimus iste architecto mollitia quasi alias officiis!
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto fugit nam facilis saepe
+                        minus rerum quos, ipsa molestiae asperiores odit tempore, facere ipsum ducimus expedita quis
+                        aliquam natus omnis. Quisquam ipsa fugit eum possimus iste architecto mollitia quasi alias
+                        officiis!
                     </p>
                     <button class="btn btn-purple-outline">
                         <div class="dark-bg">
@@ -184,7 +256,10 @@
                         TITLE
                     </h4>
                     <p class="my-4">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto fugit nam facilis saepe minus rerum quos, ipsa molestiae asperiores odit tempore, facere ipsum ducimus expedita quis aliquam natus omnis. Quisquam ipsa fugit eum possimus iste architecto mollitia quasi alias officiis!
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto fugit nam facilis saepe
+                        minus rerum quos, ipsa molestiae asperiores odit tempore, facere ipsum ducimus expedita quis
+                        aliquam natus omnis. Quisquam ipsa fugit eum possimus iste architecto mollitia quasi alias
+                        officiis!
                     </p>
                     <button class="btn btn-purple-outline">
                         <div class="dark-bg">
@@ -205,7 +280,10 @@
                         TITLE
                     </h4>
                     <p class="my-4">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto fugit nam facilis saepe minus rerum quos, ipsa molestiae asperiores odit tempore, facere ipsum ducimus expedita quis aliquam natus omnis. Quisquam ipsa fugit eum possimus iste architecto mollitia quasi alias officiis!
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto fugit nam facilis saepe
+                        minus rerum quos, ipsa molestiae asperiores odit tempore, facere ipsum ducimus expedita quis
+                        aliquam natus omnis. Quisquam ipsa fugit eum possimus iste architecto mollitia quasi alias
+                        officiis!
                     </p>
                     <button class="btn btn-purple-outline">
                         <div class="dark-bg">
@@ -243,63 +321,52 @@
 
     <footer>
         <div class="footer_section">
-          <div class="footer_section_1">
-            <div class="footer_section_1_content">
-              <img src="assets/media/chitkara_logo.png" />
-              <div>
-                <h1>About Chitkara University</h1>
-                <p>
-                  Chitkara university is a private university located in
-                  Rajpura,Punjab, India. It offers undergraduate programs,
-                  post-graduate program and doctoral programs in fields of
-                  engineering, management, pharmacy, and education.
-                </p>
-              </div>
+            <div class="footer_section_1">
+                <div class="footer_section_1_content">
+                    <img src="assets/media/chitkara_logo.png" />
+                    <div>
+                        <h1>About Chitkara University</h1>
+                        <p>
+                            Chitkara university is a private university located in
+                            Rajpura,Punjab, India. It offers undergraduate programs,
+                            post-graduate program and doctoral programs in fields of
+                            engineering, management, pharmacy, and education.
+                        </p>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="footer_section_1">
-            <div class="footer_section_1_content">
-              <img src="assets/media/octahcks_logo.png" />
-              <div>
-                <h1>About Octahacks</h1>
-                <p>
-                  This November, Octahacks is back with it's fourth edition,
-                  Octahacks 4.0. Expect more than 36 hours of inspiring panel
-                  discussions, empowering tech products, networking opportunities
-                  with budding developers and lots of fun!
-                </p>
-              </div>
+            <div class="footer_section_1">
+                <div class="footer_section_1_content">
+                    <img src="assets/media/octahcks_logo.png" />
+                    <div>
+                        <h1>About Octahacks</h1>
+                        <p>
+                            This November, Octahacks is back with it's fourth edition,
+                            Octahacks 4.0. Expect more than 36 hours of inspiring panel
+                            discussions, empowering tech products, networking opportunities
+                            with budding developers and lots of fun!
+                        </p>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="footer_section_2" id="footer">
-            <div class="social_icons">
-              <a href="https://www.instagram.com/gdsc_ciet/" target="_blank"
-                ><i class="fab fa-instagram"></i
-              ></a>
-              <a
-                href="https://www.linkedin.com/company/gdsc-ciet/mycompany/"
-                target="_blank"
-                ><i class="fab fa-linkedin"></i
-              ></a>
-              <a href="https://discord.com/invite/DJzfRCSqwe" target="_blank"
-                ><i class="fab fa-discord"></i
-              ></a>
-              <a href="https://github.com/DSC-ChitkaraUniv" target="_blank"
-                ><i class="fab fa-github"></i
-              ></a>
-              <a href="https://twitter.com/gdscciet" target="_blank"
-                ><i class="fab fa-twitter"></i
-              ></a>
-              <p>For more updates,<br />follow us on all social media.</p>
+            <div class="footer_section_2" id="footer">
+                <div class="social_icons">
+                    <a href="https://www.instagram.com/gdsc_ciet/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/gdsc-ciet/mycompany/" target="_blank"><i
+                            class="fab fa-linkedin"></i></a>
+                    <a href="https://discord.com/invite/DJzfRCSqwe" target="_blank"><i class="fab fa-discord"></i></a>
+                    <a href="https://github.com/DSC-ChitkaraUniv" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://twitter.com/gdscciet" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <p>For more updates,<br />follow us on all social media.</p>
+                </div>
             </div>
-          </div>
         </div>
         <div class="footer_section_3 mx-auto">
-          <p>Architected with ♥ by GDSC Core Team</p>
-          <img src="assets/media/GDSClogo.png" />
+            <p>Architected with ♥ by GDSC Core Team</p>
+            <img src="assets/media/GDSClogo.png" />
         </div>
-      </footer>
+    </footer>
     <script src="js/script.js"></script>
 </body>
+
 </html>
-    

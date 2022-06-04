@@ -14,6 +14,21 @@ const googleuserSchema = new Schema(
 			required: true,
 			unique: true,
 		},
+		registeredEvents: {
+			events: [
+				{
+					event: {
+						type: Schema.Types.ObjectId,
+						ref: 'Event',
+						required: true,
+					},
+					score: {
+						type: Number,
+						default: 0,
+					},
+				},
+			],
+		},
 		img: {
 			type: String,
 			default: '',
