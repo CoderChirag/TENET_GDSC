@@ -47,3 +47,13 @@ exports.getIndex = (req, res) => {
 	// }
 	// res.render('index', { isAuthenticated: req.isAuthenticated(), user,  });
 };
+
+/** @type {import('express').RequestHandler} */
+exports.getFailure = (req, res) => {
+	let message = '';
+	if (req.session.messages) {
+		message = req.session.messages[0];
+		delete req.session.messages;
+	}
+	res.render('failure', { message });
+};
