@@ -10,6 +10,10 @@
 }
 body{
     background-image: radial-gradient(#260e37, black);
+    /* background-image: url('/assets/backgrounds/Rectangle1.png'),url('/assets/backgrounds/Rectangle2.png'),url('/assets/backgrounds/Rectangle3.png'),url('/assets/backgrounds/Rectangle4.png'),url('/assets/backgrounds/Rectangle5.png'); */
+    background-color: black;
+    /* background-position: right; */
+    /* background-repeat: repeat-y; */
     background-size: 100vw 100vh;
     overflow-x: hidden;
     color: white;
