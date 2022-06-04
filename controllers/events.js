@@ -77,12 +77,12 @@ exports.postRegisterEvent = (req, res) => {
 		})
 		.then(result => {
 			console.log(result);
-			res.redirect('/user/events');
+			res.redirect('/');
 		})
 		.catch(err => {
 			console.log('Error in registering the event: ');
 			console.log(err);
-			res.redirect('/user/events');
+			res.redirect('/');
 		});
 };
 
@@ -160,11 +160,11 @@ exports.postUnregisterEvent = (req, res) => {
 		})
 		.then(result => {
 			console.log(result);
-			res.redirect('/user/events');
+			res.redirect('/');
 		})
 		.catch(err => {
 			console.log('Error in registering the event: ');
 			console.log(err);
-			res.redirect('/user/events');
+			res.redirect('/');
 		});
 };
