@@ -180,7 +180,7 @@ nav{
 
 
 footer{
-    background-color: #0f001a;
+    background-color: #1a002c42;
 }
 .footer_sections {
     font-family: "Poppins", sans-serif;
@@ -208,16 +208,12 @@ footer{
     margin-left: 5px;
   }
   .footer_section_1 {
-    /* background-color: #17171d; */
+    background-color: #1e0035;
     border-radius: 10px;
     margin: 10px;
     padding: 20px;
     /* padding-left: 0; */
     width: 430px;
-  }
-  .prize_section_sponser {
-    height: 90px !important;
-    width: 120px !important;
   }
   .footer_section_1_content {
     display: flex;
@@ -246,7 +242,6 @@ footer{
   }
   .footer_section_3 {
     width: 80vw;
-    margin: 20px auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -255,22 +250,8 @@ footer{
     width: 300px;
   }
   /* media queries */
-  @media (max-width: 1200px) {
-    .prize_section_card.sponsors {
-      padding: 40px 18px;
-    }
-    .prize_section_card.sponsors p {
-      width: 100%;
-      font-size: 0.9rem;
-    }
-  }
+
   @media (max-width: 768px) {
-    .prize_section_card {
-      width: 46%;
-    }
-    .prize_section_detail {
-      width: 85%;
-    }
     .footer_section {
       display: block;
       margin: auto;
@@ -296,15 +277,6 @@ footer{
     }
   }
   @media (max-width: 692px) {
-    .prize_section_card h1 {
-      font-size: 2rem;
-      margin-bottom: 10px;
-    }
-    .prize_section_card p {
-      font-size: 1rem;
-      margin-top: 0;
-      margin-bottom: 0;
-    }
     .footer_section_1 {
       margin: 10px auto 20px auto;
       max-width: 500px;
@@ -315,37 +287,12 @@ footer{
     .title {
       margin-bottom: 0;
     }
-    .prize_section_detail {
-      margin-bottom: 20px;
-    }
-    .prize_section_card {
-      width: 80%;
-      margin-bottom: 20px;
-    }
-    .prize_section_card div.img {
-      max-height: 200px;
-    }
-    .prize_section_detail {
-      width: 100%;
-    }
-    .prize_section_card.sponsors {
-      padding: 20px 25px;
-    }
-    .prize_section_card .sponsors_img {
-      width: 100%;
-    }
     .footer_section_1 {
       max-width: 410px;
       width: 410px;
     }
   }
   @media (max-width: 472px) {
-    .prize_section_card {
-      width: 100%;
-    }
-    .prize_section_card div.img {
-      max-height: 180px;
-    }
     .footer_section_1 {
       max-width: 350px;
       width: 350px;
