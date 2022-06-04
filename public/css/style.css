@@ -14,6 +14,10 @@ body{
     overflow-x: hidden;
     color: white;
 }
+.container{
+    max-width: 104rem;
+    margin: 0 auto;
+}
 nav{
     position: fixed;
     width: 100%;
