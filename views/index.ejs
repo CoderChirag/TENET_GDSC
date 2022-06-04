@@ -48,8 +48,15 @@
     2.) Logout Route: GET: /auth/logout
     3.) Event Register Route: POST: /events/register/:eventId  => No body required          // Both routes should only be used if user is loggedIn
     4.) Event Unregister Route: POST: /events/unregister/:eventId => No body required          else user should be redirected to login route
-                                            // If these routes are accessed without authentication, a report would be generated in the backend automatically .
+             // If these routes are accessed without authentication, a report would be generated in the backend automatically .
  -->
+
+ <% if(isAuthenticated) {%>
+    <% var registeredEventsNameArray = [] %> 
+    <% for(let i of user.registeredEvents.events) {%> 
+        <% registeredEventsNameArray.push(i.event.name) %>
+    <% } %>
+<% } %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -60,8 +67,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tenet</title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/css/style.css">
 
@@ -79,7 +85,11 @@
                 <div class="col-md-6 my-auto">
                     <ul class="navList">
                         <li><a href="#">Home</a></li>
-                        <li><a href="#">Dashboard</a></li>
+                        <% if(isAuthenticated) {%>
+                        <li><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Dashboard</a></li>
+                        <% }else{ %>
+                        <li><a href="/user/auth/google">Login</a></li>
+                        <% } %>
                         <li><a href="#Tracks">Tracks</a></li>
                         <li><a href="#Prizes">Prizes</a></li>
                         <li><a href="#">Sponsors</a></li>
@@ -101,7 +111,11 @@
             </span>
             <div class="dropDown">
                 <a href="#">Home</a>
-                <a href="#">Dashboard</a>
+                <% if(isAuthenticated) {%>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Dashboard</a>
+                <% }else{ %>
+                <a href="/user/auth/google">Login</a>
+                <% } %>
                 <a href="#Tracks">Tracks</a>
                 <a href="#Prizes">Prizes</a>
                 <a href="#">Sponsors</a>
@@ -114,16 +128,28 @@
     <section class="main">
         <div class="container h-100">
             <div class="row h-100">
-                <div class="col-md-6 my-auto">
+                <div class="col-md-6 my-auto py-4">
                     <h1>
                         Fasten Your Seatbelts <strong>Tenet</strong> Is Here
                     </h1>
                     <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, consequuntur
                     </p>
-                    <button class="btn btn-purple">
-                        REGISTER
-                    </button>
+
+                    <% if(!isAuthenticated) {%>
+                        <form method="get" action="/user/auth/google">
+                            <button class="btn btn-purple">
+                                LogIn
+                            </button>
+                        </form>
+                    <% }else{ %>
+                        <form method="get" action="/auth/logout">
+                            <button class="btn btn-purple">
+                                LogOut
+                            </button>
+                        </form>
+                    <% } %>
+
                 </div>
                 <div class="col-md-6 h-50 my-auto">
                     <div class="dummy-div mx-auto">
@@ -147,156 +173,72 @@
             </div>
         </div>
     </section>
+
+
+    
+
+
     <section id="Tracks" class="Tracks">
         <div class="container p-5">
             <h2 class="py-5 text-center">TRACKS</h2>
 
-            <div class="row">
-                <div class="col-md-5">
-                    <div class="dummy-div"></div>
-                </div>
-                <div class="col-md-7 py-4">
-                    <h4>
-                        TITLE
-                    </h4>
-                    <p class="my-4">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto fugit nam facilis saepe
-                        minus rerum quos, ipsa molestiae asperiores odit tempore, facere ipsum ducimus expedita quis
-                        aliquam natus omnis. Quisquam ipsa fugit eum possimus iste architecto mollitia quasi alias
-                        officiis!
-                    </p>
-                    <button class="btn btn-purple-outline">
-                        <div class="dark-bg">
-                            <div class="btn-text">
-                                REGISTER
-                            </div>
-                        </div>
-                    </button>
-                </div>
-            </div>
+            <% for(let i=0;i<events.length;i++) {%>
 
-            <div class="row">
-                <div class="col-md-5">
-                    <div class="dummy-div"></div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="dummy-div"></div>
+                    </div>
+                    <div class="col-md-7 py-4">
+                        <h4>
+                            <%= events[i].name %>
+                        </h4>
+                        <p class="my-4">
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto fugit nam facilis saepe
+                            minus rerum quos, ipsa molestiae asperiores odit tempore, facere ipsum ducimus expedita quis
+                            aliquam natus omnis. Quisquam ipsa fugit eum possimus iste architecto mollitia quasi alias
+                            officiis!
+                        </p>
+                        <% if(isAuthenticated) {%>
+                            <% if(registeredEventsNameArray.indexOf(events[i].name)=="-1" ) {%>
+                                <form method="post" action="/events/register/<%= events[i].name %>">
+                                    <button class="btn btn-purple-outline">
+                                        <div class="dark-bg">
+                                            <div class="btn-text">
+                                                REGISTER
+                                            </div>
+                                        </div>
+                                    </button>
+                                </form>
+                            <% }else{ %>
+                                <form method="post" action="/events/unregister/<%= events[i]._id %>">
+                                    <button class="btn btn-purple-outline">
+                                        <div class="dark-bg">
+                                            <div class="btn-text">
+                                                UNREGISTER
+                                            </div>
+                                        </div>
+                                    </button>
+                                </form>
+                            <% } %>
+                        <% }else{ %>
+                            <form method="get" action="/user/auth/google">
+                                <button class="btn btn-purple-outline">
+                                    <div class="dark-bg">
+                                        <div class="btn-text">
+                                            REGISTER
+                                        </div>
+                                    </div>
+                                </button>
+                            </form>
+                        <% } %>
+                                
+                    </div>
                 </div>
-                <div class="col-md-7 py-4">
-                    <h4>
-                        TITLE
-                    </h4>
-                    <p class="my-4">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto fugit nam facilis saepe
-                        minus rerum quos, ipsa molestiae asperiores odit tempore, facere ipsum ducimus expedita quis
-                        aliquam natus omnis. Quisquam ipsa fugit eum possimus iste architecto mollitia quasi alias
-                        officiis!
-                    </p>
-                    <button class="btn btn-purple-outline">
-                        <div class="dark-bg">
-                            <div class="btn-text">
-                                REGISTER
-                            </div>
-                        </div>
-                    </button>
-                </div>
-            </div>
 
-            <div class="row">
-                <div class="col-md-5">
-                    <div class="dummy-div"></div>
-                </div>
-                <div class="col-md-7 py-4">
-                    <h4>
-                        TITLE
-                    </h4>
-                    <p class="my-4">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto fugit nam facilis saepe
-                        minus rerum quos, ipsa molestiae asperiores odit tempore, facere ipsum ducimus expedita quis
-                        aliquam natus omnis. Quisquam ipsa fugit eum possimus iste architecto mollitia quasi alias
-                        officiis!
-                    </p>
-                    <button class="btn btn-purple-outline">
-                        <div class="dark-bg">
-                            <div class="btn-text">
-                                REGISTER
-                            </div>
-                        </div>
-                    </button>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-5">
-                    <div class="dummy-div"></div>
-                </div>
-                <div class="col-md-7 py-4">
-                    <h4>
-                        TITLE
-                    </h4>
-                    <p class="my-4">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto fugit nam facilis saepe
-                        minus rerum quos, ipsa molestiae asperiores odit tempore, facere ipsum ducimus expedita quis
-                        aliquam natus omnis. Quisquam ipsa fugit eum possimus iste architecto mollitia quasi alias
-                        officiis!
-                    </p>
-                    <button class="btn btn-purple-outline">
-                        <div class="dark-bg">
-                            <div class="btn-text">
-                                REGISTER
-                            </div>
-                        </div>
-                    </button>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-5">
-                    <div class="dummy-div"></div>
-                </div>
-                <div class="col-md-7 py-4">
-                    <h4>
-                        TITLE
-                    </h4>
-                    <p class="my-4">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto fugit nam facilis saepe
-                        minus rerum quos, ipsa molestiae asperiores odit tempore, facere ipsum ducimus expedita quis
-                        aliquam natus omnis. Quisquam ipsa fugit eum possimus iste architecto mollitia quasi alias
-                        officiis!
-                    </p>
-                    <button class="btn btn-purple-outline">
-                        <div class="dark-bg">
-                            <div class="btn-text">
-                                REGISTER
-                            </div>
-                        </div>
-                    </button>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-5">
-                    <div class="dummy-div"></div>
-                </div>
-                <div class="col-md-7 py-4">
-                    <h4>
-                        TITLE
-                    </h4>
-                    <p class="my-4">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto fugit nam facilis saepe
-                        minus rerum quos, ipsa molestiae asperiores odit tempore, facere ipsum ducimus expedita quis
-                        aliquam natus omnis. Quisquam ipsa fugit eum possimus iste architecto mollitia quasi alias
-                        officiis!
-                    </p>
-                    <button class="btn btn-purple-outline">
-                        <div class="dark-bg">
-                            <div class="btn-text">
-                                REGISTER
-                            </div>
-                        </div>
-                    </button>
-                </div>
-            </div>
-
+            <% } %>
         </div>
     </section>
+
     <section id="Prizes" class="Prizes">
         <div class="container">
             <h2 class="py-5 text-center">
@@ -352,8 +294,7 @@
             <div class="footer_section_2" id="footer">
                 <div class="social_icons">
                     <a href="https://www.instagram.com/gdsc_ciet/" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.linkedin.com/company/gdsc-ciet/mycompany/" target="_blank"><i
-                            class="fab fa-linkedin"></i></a>
+                    <a href="https://www.linkedin.com/company/gdsc-ciet/mycompany/" target="_blank"><iclass="fab fa-linkedin"></i></a>
                     <a href="https://discord.com/invite/DJzfRCSqwe" target="_blank"><i class="fab fa-discord"></i></a>
                     <a href="https://github.com/DSC-ChitkaraUniv" target="_blank"><i class="fab fa-github"></i></a>
                     <a href="https://twitter.com/gdscciet" target="_blank"><i class="fab fa-twitter"></i></a>
@@ -366,6 +307,101 @@
             <img src="assets/media/GDSClogo.png" alt="Image not available" />
         </div>
     </footer>
+
+
+    <!-- =============================Modal====================================== -->
+    <% if(isAuthenticated) {%>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen p-5 rounded">
+          <div class="modal-content bg-purple-dark">
+
+
+            <div class="modal-header">
+              <h5 class="modal-title">My Dashboard</h5>
+              <button type="button" class="btn text-light" data-bs-dismiss="modal"><i class="fas - fa-times"></i></button>
+            </div>
+
+
+            <div class="modal-body p-5">
+                <div class="row">
+                    <div class="col-md-3 text-center">
+                        <img class="profile-image" src="<%= user.img %> " alt="Image no Found">
+                    </div>
+                    <div class="col-md-9">
+                        <table class="table table-borderless text-light">
+                            <tr>
+                                <td>Name</td>
+                                <td> : </td>
+                                <td><%= user.username %> </td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td> : </td>
+                                <td><%= user.email %> </td>
+                            </tr>
+                            <tr>
+                                <td>Admin</td>
+                                <td> : </td>
+                                <td><%= user.isAdmin %> </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="row registeredEvents rounded h-100 justify-content-between">
+                    <h2 class="Display-5 text-center">My Events</h2>
+
+                    <% for(let i=0;i<user.registeredEvents.events.length;i++) {%>
+                        <div class="col-lg-4 col-md-6 col-sm-12 p-4 my-3">
+                            <a href="/events/register/<%= user.registeredEvents.events[i].event._id %> ">
+                                <div class="Event" >
+                                    <div class="eventSheet">
+                                        <table class="w-50 table table-borderless text-light">
+                                            <tr>
+                                                <td>Event</td>
+                                                <td> : </td>
+                                                <td><%= user.registeredEvents.events[i].event.name %> </td>
+                                            </tr>
+                                            <tr>
+                                                <td>My Score</td>
+                                                <td> : </td>
+                                                <td><%= user.registeredEvents.events[i].score %> </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    
+
+                                    <img src="https://cvbay.com/wp-content/uploads/2017/03/dummy-image.jpg" alt="Image not available">
+                                    <div class="eventSheetOnPhone d-xxl-none text-center">
+                                        <table class="w-100 table table-borderless text-light">
+                                            <tr>
+                                                <td>Event</td>
+                                                <td> : </td>
+                                                <td><%= user.registeredEvents.events[i].event.name %> </td>
+                                            </tr>
+                                            <tr>
+                                                <td>My Score</td>
+                                                <td> : </td>
+                                                <td><%= user.registeredEvents.events[i].score %> </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                            
+                        </div>
+                    <% } %>
+
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% } %>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="js/script.js"></script>
 </body>
 
