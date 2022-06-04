@@ -59,7 +59,7 @@ nav{
     display: none;
 }
 .ham{
-    position: absolute;
+    /* position: absolute; */
     font-size: 3.5rem;
 }
 .Active{
