@@ -173,6 +173,33 @@ nav {
 	/* background-size: cover; */
 	/* background-color: white; */
 }
+.trackImage5 {
+	height: 100%;
+	width: 100%;
+	background-image: url("/assets/Web.svg");
+	background-repeat: no-repeat;
+	background-position: center;
+	/* background-size: cover; */
+	/* background-color: white; */
+}
+.trackImage6 {
+	height: 100%;
+	width: 100%;
+	background-image: url("/assets/Debate.svg");
+	background-repeat: no-repeat;
+	background-position: center;
+	/* background-size: cover; */
+	/* background-color: white; */
+}
+.trackImage7 {
+	height: 100%;
+	width: 100%;
+	background-image: url("/assets/Quiz.svg");
+	background-repeat: no-repeat;
+	background-position: center;
+	/* background-size: cover; */
+	/* background-color: white; */
+}
 .heroPic-div {
 	height: 100%;
 	width: 100%;
