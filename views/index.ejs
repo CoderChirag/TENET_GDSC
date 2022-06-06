@@ -155,9 +155,9 @@
 					<% } %>
 					
 				</div>
-				<div class="col-md-6 h-50 my-auto">
-					<div class="dummy-div mx-auto">
-						This needs to be replaced
+				<div class="col-md-6 my-auto">
+					<div class="heroPic-div mx-auto">
+						<img src="/assets/heroVector.svg" alt="Image Not Available">
 					</div>
 				</div>
 			</div>
@@ -186,15 +186,13 @@
 		<div class="container p-5">
 			<h2 class="py-5 text-center">TRACKS</h2>
 			
-			<% for(let i=0;i<events.length;i++) {%>
-			
 			<div class="row">
 				<div class="col-md-5">
-					<div class="dummy-div"></div>
+					<div class="trackImage1"></div>
 				</div>
 				<div class="col-md-7 py-4">
 					<h4>
-						<%= events[i].name %>
+						Test Event
 					</h4>
 					<p class="my-4">
 						Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto fugit nam facilis saepe
@@ -202,44 +200,85 @@
 						aliquam natus omnis. Quisquam ipsa fugit eum possimus iste architecto mollitia quasi alias
 						officiis!
 					</p>
-					<% if(isAuthenticated) { %>
-					<% if(registeredEventsNameArray.indexOf(events[i].name)=="-1" ) {%>
-					<form method="post" action="/events/register/<%= events[i]._id %>">
-						<button class="btn btn-purple-outline">
-							<div class="dark-bg">
-								<div class="btn-text">
-									REGISTER
-								</div>
+					<button class="btn btn-purple-outline">
+						<div class="dark-bg">
+							<div class="btn-text">
+								REGISTER
 							</div>
-						</button>
-					</form>
-					<% }else{ %>
-					<form method="post" action="/events/unregister/<%= events[i]._id %>">
-						<button class="btn btn-purple-outline">
-							<div class="dark-bg">
-								<div class="btn-text">
-									UNREGISTER
-								</div>
-							</div>
-						</button>
-					</form>
-					<% } %>
-					<% }else{ %>
-					<form method="get" action="/user/auth/google">
-						<button class="btn btn-purple-outline">
-							<div class="dark-bg">
-								<div class="btn-text">
-									REGISTER
-								</div>
-							</div>
-						</button>
-					</form>
-					<% } %>
-					
+						</div>
+					</button>
 				</div>
 			</div>
-			
-			<% } %>
+			<div class="row">
+				<div class="col-md-5">
+					<div class="trackImage2"></div>
+				</div>
+				<div class="col-md-7 py-4">
+					<h4>
+						Test Event
+					</h4>
+					<p class="my-4">
+						Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto fugit nam facilis saepe
+						minus rerum quos, ipsa molestiae asperiores odit tempore, facere ipsum ducimus expedita quis
+						aliquam natus omnis. Quisquam ipsa fugit eum possimus iste architecto mollitia quasi alias
+						officiis!
+					</p>
+					<button class="btn btn-purple-outline">
+						<div class="dark-bg">
+							<div class="btn-text">
+								REGISTER
+							</div>
+						</div>
+					</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-5">
+					<div class="trackImage3"></div>
+				</div>
+				<div class="col-md-7 py-4">
+					<h4>
+						Test Event
+					</h4>
+					<p class="my-4">
+						Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto fugit nam facilis saepe
+						minus rerum quos, ipsa molestiae asperiores odit tempore, facere ipsum ducimus expedita quis
+						aliquam natus omnis. Quisquam ipsa fugit eum possimus iste architecto mollitia quasi alias
+						officiis!
+					</p>
+					<button class="btn btn-purple-outline">
+						<div class="dark-bg">
+							<div class="btn-text">
+								REGISTER
+							</div>
+						</div>
+					</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-5">
+					<div class="trackImage4"></div>
+				</div>
+				<div class="col-md-7 py-4">
+					<h4>
+						Test Event
+					</h4>
+					<p class="my-4">
+						Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto fugit nam facilis saepe
+						minus rerum quos, ipsa molestiae asperiores odit tempore, facere ipsum ducimus expedita quis
+						aliquam natus omnis. Quisquam ipsa fugit eum possimus iste architecto mollitia quasi alias
+						officiis!
+					</p>
+					<button class="btn btn-purple-outline">
+						<div class="dark-bg">
+							<div class="btn-text">
+								REGISTER
+							</div>
+						</div>
+					</button>
+				</div>
+			</div>
+
 		</div>
 	</section>
 	
