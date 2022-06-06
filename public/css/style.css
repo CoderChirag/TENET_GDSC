@@ -200,6 +200,15 @@ nav {
 	/* background-size: cover; */
 	/* background-color: white; */
 }
+.trackImage8 {
+	height: 100%;
+	width: 100%;
+	background-image: url("/assets/CompetitiveProgramming.svg");
+	background-repeat: no-repeat;
+	background-position: center;
+	/* background-size: cover; */
+	/* background-color: white; */
+}
 .heroPic-div {
 	height: 100%;
 	width: 100%;
