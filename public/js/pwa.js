@@ -8,5 +8,5 @@ if ('serviceWorker' in navigator) {
 			console.log('Error while registering service worker', e);
 		});
 } else {
-	alert('Sorry your browser does not support PWA - demo');
+	console.log('Sorry your browser does not support PWA - demo');
 }
