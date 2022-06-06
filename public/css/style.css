@@ -141,8 +141,37 @@ nav {
 	height: 100%;
 	width: 100%;
 	background-image: url("/assets/Flutter.svg");
-	background-size: cover;
-	background-color: white;
+	background-repeat: no-repeat;
+	background-position: center;
+	/* background-size: cover; */
+	/* background-color: white; */
+}
+.trackImage2 {
+	height: 100%;
+	width: 100%;
+	background-image: url("/assets/Gaming.svg");
+	background-repeat: no-repeat;
+	background-position: center;
+	/* background-size: cover; */
+	/* background-color: white; */
+}
+.trackImage3 {
+	height: 100%;
+	width: 100%;
+	background-image: url("/assets/BlockChain.svg");
+	background-repeat: no-repeat;
+	background-position: center;
+	/* background-size: cover; */
+	/* background-color: white; */
+}
+.trackImage4 {
+	height: 100%;
+	width: 100%;
+	background-image: url("/assets/UIDesign.svg");
+	background-repeat: no-repeat;
+	background-position: center;
+	/* background-size: cover; */
+	/* background-color: white; */
 }
 .heroPic-div {
 	height: 100%;
