@@ -1,4 +1,4 @@
-.sponsors {
+.Sponsors {
 	margin-top: 30px;
 	background-color: transparent;
 	padding-bottom: 15px;
@@ -6,13 +6,13 @@
 	justify-content: center;
 	margin-bottom: 100px;
 }
-.sponsors-container {
+.Sponsors-container {
 	max-width: 80vw;
 }
-.sponsors div {
+.Sponsors div {
 	cursor: pointer;
 }
-.sponsors_description {
+.Sponsors_description {
 	color: rgb(238, 224, 224);
 	text-align: center;
 }
@@ -29,11 +29,11 @@
 .awesome {
 	color: var(--purple-shade);
 }
-.sponsors-alpha,
-.sponsors-beta,
-.sponsors-gold,
-.sponsors-gamma,
-.sponsors-delta,
+.Sponsors-alpha,
+.Sponsors-beta,
+.Sponsors-gold,
+.Sponsors-gamma,
+.Sponsors-delta,
 .sponsor-nova {
 	border-radius: 20px;
 	/* box-sizing: content-box; */
@@ -68,7 +68,7 @@
 .gold-images {
 	justify-content: space-around;
 }
-.sponsors-alpha {
+.Sponsors-alpha {
 	border-left: 2px solid #ea4335;
 	transition: all 0.5s ease-in-out;
 }
@@ -76,18 +76,18 @@
 .alpha-title {
 	color: #ea4335;
 }
-.sponsors-alpha:hover {
+.Sponsors-alpha:hover {
 	border-right: 2px solid #ea4335;
 	border-top: 2px solid #ea4335;
 	border-bottom: 2px solid #ea4335;
 	border-left: none;
 }
 
-.sponsors-beta {
+.Sponsors-beta {
 	border-left: 2px solid #4285f4;
 	transition: all 0.5s ease-in-out;
 }
-.sponsors-gold {
+.Sponsors-gold {
 	border-left: 2px solid #eedb35;
 	transition: all 0.5s ease-in-out;
 }
@@ -97,21 +97,21 @@
 .gold-title {
 	color: #eedb35;
 }
-.sponsors-beta:hover {
+.Sponsors-beta:hover {
 	border-right: 2px solid #4285f4;
 	border-top: 2px solid #4285f4;
 	border-bottom: 2px solid #4285f4;
 	border-left: none;
 }
 
-.sponsors-gold:hover {
+.Sponsors-gold:hover {
 	border-right: 2px solid #eedb35;
 	border-top: 2px solid #eedb35;
 	border-bottom: 2px solid #eedb35;
 	border-left: none;
 }
 
-.sponsors-gamma {
+.Sponsors-gamma {
 	border-left: 2px solid #df8464;
 	width: 40%;
 	margin-top: 20px;
@@ -121,14 +121,14 @@
 .gamma-title {
 	color: #df8464;
 }
-.sponsors-gamma:hover {
+.Sponsors-gamma:hover {
 	border-right: 2px solid #df8464;
 	border-top: 2px solid #df8464;
 	border-bottom: 2px solid #df8464;
 	border-left: none;
 }
 /* 
-.sponsors-nova {
+.Sponsors-nova {
   display: block;
   border-left: 2px solid #df8464;
   width: 40%;
@@ -139,7 +139,7 @@
 .nova-title {
   color: #df8464;
 }
-.sponsors-nova:hover {
+.Sponsors-nova:hover {
   background-color: black;
   border-right: 2px solid #df8464;
   border-top: 2px solid #df8464;
@@ -147,7 +147,7 @@
   border-left: none;
 } */
 
-.sponsors-delta {
+.Sponsors-delta {
 	border-left: 2px solid #d21fff;
 	width: 60%;
 	margin-top: 20px;
@@ -156,20 +156,20 @@
 .delta-title {
 	color: #d21fff;
 }
-.sponsors-delta:hover {
+.Sponsors-delta:hover {
 	border-right: 2px solid #d21fff;
 	border-top: 2px solid #d21fff;
 	border-bottom: 2px solid #d21fff;
 	border-left: none;
 }
-/* .sponsors-alpha:hover > .alpha-title,
-.sponsors-beta:hover > .beta-title,
-.sponsors-gamma:hover > .gamma-title,
-.sponsors-delta:hover > .delta-title {
+/* .Sponsors-alpha:hover > .alpha-title,
+.Sponsors-beta:hover > .beta-title,
+.Sponsors-gamma:hover > .gamma-title,
+.Sponsors-delta:hover > .delta-title {
   color: black; 
 } */
-.sponsors-delta,
-.sponsors-gamma {
+.Sponsors-delta,
+.Sponsors-gamma {
 	margin-top: 60px;
 }
 .wrap {
@@ -253,7 +253,7 @@
 }
 
 @media screen and (max-width: 650px) {
-	.sponsors-container {
+	.Sponsors-container {
 		max-width: 94%;
 	}
 	.wrap {
@@ -265,10 +265,10 @@
 	.community {
 		width: 100%;
 	}
-	.sponsors-gamma {
+	.Sponsors-gamma {
 		width: 100%;
 	}
-	.sponsors-delta {
+	.Sponsors-delta {
 		width: 100%;
 	}
 }

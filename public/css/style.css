@@ -118,6 +118,8 @@ nav {
 .main {
 	height: 100vh;
 	color: white;
+	backdrop-filter: blur(2px);
+
 }
 .main h1 strong {
 	color: var(--purple-shade);
