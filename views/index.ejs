@@ -82,7 +82,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="/css/style.css">
-	<link rel="stylesheet" href="/css/sponsors.css">
+	<link rel="stylesheet" href="/css/Sponsors.css">
 	<link rel="stylesheet" href="/css/past_events.css">
 	
 </head>
@@ -106,7 +106,7 @@
 						<% } %>
 						<li><a href="#Tracks">Tracks</a></li>
 						<li><a href="#Prizes">Prizes</a></li>
-						<li><a href="#">Sponsors</a></li>
+						<li><a href="#Sponsors">Sponsors</a></li>
 						<li><a href="#">Contact</a></li>
 					</ul>
 				</div>
@@ -115,27 +115,36 @@
 				</div>
 			</div>
 		</div>
-		<div class=" container mobile">
-			<span onclick="dropDown()" class="ham">
-				<i class="fa fa-bars"></i>
-			</span>
-			<span class="mx-auto text-right">
-				<img src="/assets/logo 1.svg" alt="Image not available">
-				<img class="w-50" src="/assets/GDSClogo.png" alt="Image not available">
-			</span>
-			<div class="dropDown">
-				<a href="#">Home</a>
-				<% if(isAuthenticated) {%>
-				<a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Dashboard</a>
-				<% }else{ %>
-				<a href="/user/auth/google">Login</a>
-				<% } %>
-				<a href="#Tracks">Tracks</a>
-				<a href="#Prizes">Prizes</a>
-				<a href="#">Sponsors</a>
-				<a href="#">Contact</a>
+
+
+
+		<div class="container mobile">
+			<div class="row">
+				<div onclick="dropDown()" class="ham col-3">
+					<i class="fa fa-bars"></i>
+				</div>
+				<div class="text-end col-9">
+					<img src="/assets/logo 1.svg" alt="Image not available">
+				</div>
+				<div class="dropDown">
+
+					<a><img class="w-100 m-2" src="/assets/GDSClogo.png" alt="Image not available"></a>
+					<a href="#">Home</a>
+					<% if(isAuthenticated) {%>
+					<a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Dashboard</a>
+					<% }else{ %>
+					<a href="/user/auth/google">Login</a>
+					<% } %>
+					<a href="#Tracks">Tracks</a>
+					<a href="#Prizes">Prizes</a>
+					<a href="#Sponsors">Sponsors</a>
+					<a href="#">Contact</a>
+				</div>
 			</div>
 		</div>
+
+
+
 	</nav>
 	
 	
@@ -173,6 +182,7 @@
 			</div>
 		</div>
 	</section>
+
 	<section id="AboutUs" class="AboutUs">
 		<div class="container p-5">
 			<div class="text-center">
@@ -187,18 +197,14 @@
 			</div>
 		</div>
 	</section>
-	
-	
-	
-	
-	
+		
 	<section id="Tracks" class="Tracks">
 		<div class="container p-5">
 			<h2 class="py-5 text-center">TRACKS</h2>
 			
 			<div class="row">
 				<div class="col-md-5">
-					<div class="trackImage1"></div>
+					<div class="trackImage" style="background-image:url('/assets/Flutter.svg')"></div>
 				</div>
 				<div class="col-md-7 py-4">
 					<h4>
@@ -221,7 +227,7 @@
 			</div>
 			<div class="row">
 				<div class="col-md-5">
-					<div class="trackImage2"></div>
+					<div class="trackImage" style="background-image:url('/assets/Gaming.svg')"></div>
 				</div>
 				<div class="col-md-7 py-4">
 					<h4>
@@ -244,7 +250,7 @@
 			</div>
 			<div class="row">
 				<div class="col-md-5">
-					<div class="trackImage3"></div>
+					<div class="trackImage" style="background-image:url('/assets/BlockChain.svg')"></div>
 				</div>
 				<div class="col-md-7 py-4">
 					<h4>
@@ -267,7 +273,7 @@
 			</div>
 			<div class="row">
 				<div class="col-md-5">
-					<div class="trackImage4"></div>
+					<div class="trackImage" style="background-image:url('/assets/UIDesign.svg')"></div>
 				</div>
 				<div class="col-md-7 py-4">
 					<h4>
@@ -290,7 +296,7 @@
 			</div>
 			<div class="row">
 				<div class="col-md-5">
-					<div class="trackImage5"></div>
+					<div class="trackImage" style="background-image:url('/assets/Web.svg')"></div>
 				</div>
 				<div class="col-md-7 py-4">
 					<h4>
@@ -313,7 +319,7 @@
 			</div>
 			<div class="row">
 				<div class="col-md-5">
-					<div class="trackImage6"></div>
+					<div class="trackImage" style="background-image:url('/assets/Debate.svg')"></div>
 				</div>
 				<div class="col-md-7 py-4">
 					<h4>
@@ -336,7 +342,7 @@
 			</div>
 			<div class="row">
 				<div class="col-md-5">
-					<div class="trackImage7"></div>
+					<div class="trackImage" style="background-image:url('/assets/Quiz.svg')"></div>
 				</div>
 				<div class="col-md-7 py-4">
 					<h4>
@@ -359,7 +365,7 @@
 			</div>
 			<div class="row">
 				<div class="col-md-5">
-					<div class="trackImage8"></div>
+					<div class="trackImage" style="background-image:url('/assets/CompetitiveProgramming.svg')"></div>
 				</div>
 				<div class="col-md-7 py-4">
 					<h4>
@@ -407,17 +413,17 @@
 	</section>
 	
 	<!-- --------------------------- Sponsors Section ------------------------------------------------ -->
-	<section class="sponsors" id="sponsors">
-		<div class="sponsors-container">
+	<section class="sponsors" id="Sponsors">
+		<div class="Sponsors-container">
 			<h1 class="sponsor-title">
 				Our <span class="awesome">Awesome</span> Sponsors
 			</h1>
-			<p class="sponsors_description">
+			<p class="Sponsors_description">
 				While all our participants make our event lively. It is our very
-				amazing <span class="about_high">sponsors</span> that
+				amazing <span class="about_high">Sponsors</span> that
 				<span class="about_high">make it possible.</span>
 			</p>
-			<div class="sponsors-alpha">
+			<div class="Sponsors-alpha">
 				<h2 class="alpha-title">Platinum Sponsors</h2>
 				<div class="alpha-images">
 					<a href="https://devfolio.co" target="blank">
@@ -428,7 +434,7 @@
 					</a>
 				</div>
 			</div>
-			<div class="sponsors-gold">
+			<div class="Sponsors-gold">
 				<h2 class="gold-title">Gold Sponsors</h2>
 				<div class="gold-images">
 					<a href="https://filecoin.io" target="blank">
@@ -445,7 +451,7 @@
 					</a>
 				</div>
 			</div>
-			<div class="sponsors-beta">
+			<div class="Sponsors-beta">
 				<h2 class="beta-title">Premium Sponsors</h2>
 				<div class="beta-images">
 					<a href="https://www.interviewcake.com/" target="black">
@@ -465,7 +471,7 @@
 					</a>
 				</div>
 			</div>
-			<!-- <div class="sponsors-gold">
+			<!-- <div class="Sponsors-gold">
           <h2 class="gold-title">Bronze Sponsors</h2>
           <div class="gold-images">
             <a href="https://www.interviewcake.com/" target="black">
@@ -478,7 +484,7 @@
           </div>
         </div> -->
 			<div class="wrap">
-				<div class="sponsors-gamma">
+				<div class="Sponsors-gamma">
 					<h2 class="gamma-title">Gamma Sponsors</h2>
 					<div class="gamma-images">
 						<!-- <img src="assets/Sponsors/upgrad.svg" /> -->
@@ -496,7 +502,7 @@
 						</a>
 					</div>
 				</div>
-				<div class="sponsors-delta">
+				<div class="Sponsors-delta">
 					<h2 class="delta-title">Delta Sponsors</h2>
 					<div class="delta-images">
 						<a href="https://www.linode.com/" target="blank">
