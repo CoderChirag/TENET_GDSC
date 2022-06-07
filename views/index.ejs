@@ -1,17 +1,855 @@
+<!-- 
+    -------- 3 Data Variables Available here => 1.) isAuthenticated: Boolean, 2.) events: Array, 3.) user: Object
+    1.) isAuthenticated: true or false
+    2.) events: Data available no matter user is logged in or not
+        [
+            { _id: 629a5d95253d147052113dc8, name: 'test' },
+            { _id: 629a816f2dfc38f2c94b1577, name: 'test2' },
+            { _id: 629b2f20698956b4e1d4f156, name: 'test3' },
+            { _id: 629b2f2f698956b4e1d4f157, name: 'test4' },
+            { _id: 629b2f3e698956b4e1d4f158, name: 'test5' },
+            { _id: 629b2f4b698956b4e1d4f159, name: 'test6' }
+        ]
+    3.) user: empty object if not authenticated
+        {
+            registeredEvents: { 
+                events: [ 
+                    {
+                        _id: 629a8a16485fb41af8da4c53,
+                        score: 2,
+                        event: {
+                            _id: 629a5d95253d147052113dc8,
+                            name: 'test'
+                        },
+                    } ,
+                    {
+                        _id: 629a8a1c485fb41af8da4c59,
+                        score: 5,
+                        event: {
+                            _id: 629a816f2dfc38f2c94b1577,
+                            name: 'test2'
+                        }
+                    }
+                ] 
+            },
+            img: 'https://lh3.googleusercontent.com/a-/AOh14GjSzc-vqvpDpho9J5FanjztwlljAeTHk8RKL8PZ=s96-c',
+            isAdmin: true,
+            _id: 629a5c05bba352690c5c7065,
+            username: 'CHIRAG JAIN',
+            email: 'chirag0174.be20@chitkara.edu.in',
+            date: 2022-06-03T19:07:49.668Z,
+            createdAt: 2022-06-03T19:07:49.672Z,
+            updatedAt: 2022-06-03T22:32:27.883Z,
+            __v: 0
+        }
+
+    ------- Routes -----------
+    1.) Login Route: GET: /user/auth/google
+    2.) Logout Route: GET: /auth/logout
+    3.) Event Register Route: POST: /events/register/:eventId  => No body required          // Both routes should only be used if user is loggedIn
+    4.) Event Unregister Route: POST: /events/unregister/:eventId => No body required          else user should be redirected to login route
+             // If these routes are accessed without authentication, a report would be generated in the backend automatically .
+ -->
+
+<% if(isAuthenticated) {%>
+<% var registeredEventsNameArray = [] %>
+<% for(let i of user.registeredEvents.events) {%>
+<% registeredEventsNameArray.push(i.event.name) %>
+<% } %>
+<% } %>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#260e37">
+	<meta name="description" content="Tenet GDSC" />
+	<meta name="keywords" content="Tenet, GDSC, Google, Google Developer Student Clubs, DSC, Developer Student Clubs, Chitkara University, CUIET, Chitkara, University, Community, College, University" />
+	<meta name="language" content="English" />
+	<meta name="author" content="GDSC CUIET" />
+	
+	<!-- Mainfest File & Favicon -->
+	<link rel="icon" href="/assets/logos/logo 1.ico" />
+	<link rel="manifest" href="/manifest.json">
+	
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/sponsors.css">
+	<link rel="stylesheet" href="/css/past_events.css">
+	
 </head>
 
 <body>
-    <h1>
-        Hii <%= user %>
-    </h1>
+	
+	
+	<nav>
+		<div class="container desktop">
+			<div class="row justify-content-between">
+				<div class="col-md-2">
+					<img src="/assets/logo 1.svg" alt="Image not available">
+				</div>
+				<div class="col-md-6 my-auto">
+					<ul class="navList">
+						<li><a href="#">Home</a></li>
+						<% if(isAuthenticated) {%>
+						<li><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Dashboard</a></li>
+						<% }else{ %>
+						<li><a href="/user/auth/google">Login</a></li>
+						<% } %>
+						<li><a href="#Tracks">Tracks</a></li>
+						<li><a href="#Prizes">Prizes</a></li>
+						<li><a href="#">Sponsors</a></li>
+						<li><a href="#">Contact</a></li>
+					</ul>
+				</div>
+				<div class="col-md-3 my-auto">
+					<img class="w-100" src="/assets/GDSClogo.png" alt="Image not available">
+				</div>
+			</div>
+		</div>
+		<div class=" container mobile">
+			<span onclick="dropDown()" class="ham">
+				<i class="fa fa-bars"></i>
+			</span>
+			<span class="mx-auto text-right">
+				<img src="/assets/logo 1.svg" alt="Image not available">
+				<img class="w-50" src="/assets/GDSClogo.png" alt="Image not available">
+			</span>
+			<div class="dropDown">
+				<a href="#">Home</a>
+				<% if(isAuthenticated) {%>
+				<a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Dashboard</a>
+				<% }else{ %>
+				<a href="/user/auth/google">Login</a>
+				<% } %>
+				<a href="#Tracks">Tracks</a>
+				<a href="#Prizes">Prizes</a>
+				<a href="#">Sponsors</a>
+				<a href="#">Contact</a>
+			</div>
+		</div>
+	</nav>
+	
+	
+	<section class="main">
+		<div class="container h-100">
+			<div class="row h-100">
+				<div class="col-md-6 my-auto py-4">
+					<h1>
+						Fasten Your Seatbelts <strong>Tenet</strong> Is Here
+					</h1>
+					<p>
+						Learn. Build. Compete. Connect.
+					</p>
+					
+					<% if(!isAuthenticated) {%>
+					<form method="get" action="/user/auth/google">
+						<button class="btn btn-purple"  disabled>
+							LogIn
+						</button>
+					</form>
+					<% }else{ %>
+					<form method="get" action="/auth/logout">
+						<button class="btn btn-purple" disabled>
+							LogOut
+						</button>
+					</form>
+					<% } %>
+					
+				</div>
+				<div class="col-md-6 my-auto">
+					<div class="heroPic-div mx-auto">
+						<img src="/assets/heroVector.svg" alt="Image Not Available">
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section id="AboutUs" class="AboutUs">
+		<div class="container p-5">
+			<div class="text-center">
+				<h2 class="py-5">ABOUT US</h2>
+				<p>
+					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam itaque, iste dolor obcaecati
+					quasi adipisci ratione, pariatur rerum dolorem, optio distinctio magnam? Pariatur illo distinctio
+					suscipit hic atque itaque dolorem repudiandae soluta quas corporis. Iste unde blanditiis
+					reprehenderit inventore enim totam distinctio similique voluptates reiciendis, explicabo at fuga?
+					Perferendis aperiam id obcaecati cum quisquam accusamus modi quasi aliquam consequatur amet.
+				</p>
+			</div>
+		</div>
+	</section>
+	
+	
+	
+	
+	
+	<section id="Tracks" class="Tracks">
+		<div class="container p-5">
+			<h2 class="py-5 text-center">TRACKS</h2>
+			
+			<div class="row">
+				<div class="col-md-5">
+					<div class="trackImage1"></div>
+				</div>
+				<div class="col-md-7 py-4">
+					<h4>
+						Flutter
+					</h4>
+					<p class="my-4">
+						Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto fugit nam facilis saepe
+						minus rerum quos, ipsa molestiae asperiores odit tempore, facere ipsum ducimus expedita quis
+						aliquam natus omnis. Quisquam ipsa fugit eum possimus iste architecto mollitia quasi alias
+						officiis!
+					</p>
+					<button class="btn btn-purple-outline">
+						<div class="dark-bg">
+							<div class="btn-text">
+								REGISTER
+							</div>
+						</div>
+					</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-5">
+					<div class="trackImage2"></div>
+				</div>
+				<div class="col-md-7 py-4">
+					<h4>
+						Gaming
+					</h4>
+					<p class="my-4">
+						Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto fugit nam facilis saepe
+						minus rerum quos, ipsa molestiae asperiores odit tempore, facere ipsum ducimus expedita quis
+						aliquam natus omnis. Quisquam ipsa fugit eum possimus iste architecto mollitia quasi alias
+						officiis!
+					</p>
+					<button class="btn btn-purple-outline">
+						<div class="dark-bg">
+							<div class="btn-text">
+								REGISTER
+							</div>
+						</div>
+					</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-5">
+					<div class="trackImage3"></div>
+				</div>
+				<div class="col-md-7 py-4">
+					<h4>
+						BlockChain
+					</h4>
+					<p class="my-4">
+						Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto fugit nam facilis saepe
+						minus rerum quos, ipsa molestiae asperiores odit tempore, facere ipsum ducimus expedita quis
+						aliquam natus omnis. Quisquam ipsa fugit eum possimus iste architecto mollitia quasi alias
+						officiis!
+					</p>
+					<button class="btn btn-purple-outline">
+						<div class="dark-bg">
+							<div class="btn-text">
+								REGISTER
+							</div>
+						</div>
+					</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-5">
+					<div class="trackImage4"></div>
+				</div>
+				<div class="col-md-7 py-4">
+					<h4>
+						UI Designing
+					</h4>
+					<p class="my-4">
+						Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto fugit nam facilis saepe
+						minus rerum quos, ipsa molestiae asperiores odit tempore, facere ipsum ducimus expedita quis
+						aliquam natus omnis. Quisquam ipsa fugit eum possimus iste architecto mollitia quasi alias
+						officiis!
+					</p>
+					<button class="btn btn-purple-outline">
+						<div class="dark-bg">
+							<div class="btn-text">
+								REGISTER
+							</div>
+						</div>
+					</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-5">
+					<div class="trackImage5"></div>
+				</div>
+				<div class="col-md-7 py-4">
+					<h4>
+						Web Exploration
+					</h4>
+					<p class="my-4">
+						Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto fugit nam facilis saepe
+						minus rerum quos, ipsa molestiae asperiores odit tempore, facere ipsum ducimus expedita quis
+						aliquam natus omnis. Quisquam ipsa fugit eum possimus iste architecto mollitia quasi alias
+						officiis!
+					</p>
+					<button class="btn btn-purple-outline">
+						<div class="dark-bg">
+							<div class="btn-text">
+								REGISTER
+							</div>
+						</div>
+					</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-5">
+					<div class="trackImage6"></div>
+				</div>
+				<div class="col-md-7 py-4">
+					<h4>
+						Debate
+					</h4>
+					<p class="my-4">
+						Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto fugit nam facilis saepe
+						minus rerum quos, ipsa molestiae asperiores odit tempore, facere ipsum ducimus expedita quis
+						aliquam natus omnis. Quisquam ipsa fugit eum possimus iste architecto mollitia quasi alias
+						officiis!
+					</p>
+					<button class="btn btn-purple-outline">
+						<div class="dark-bg">
+							<div class="btn-text">
+								REGISTER
+							</div>
+						</div>
+					</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-5">
+					<div class="trackImage7"></div>
+				</div>
+				<div class="col-md-7 py-4">
+					<h4>
+						Tech Quiz
+					</h4>
+					<p class="my-4">
+						Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto fugit nam facilis saepe
+						minus rerum quos, ipsa molestiae asperiores odit tempore, facere ipsum ducimus expedita quis
+						aliquam natus omnis. Quisquam ipsa fugit eum possimus iste architecto mollitia quasi alias
+						officiis!
+					</p>
+					<button class="btn btn-purple-outline">
+						<div class="dark-bg">
+							<div class="btn-text">
+								REGISTER
+							</div>
+						</div>
+					</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-5">
+					<div class="trackImage8"></div>
+				</div>
+				<div class="col-md-7 py-4">
+					<h4>
+						Competitive Programming
+					</h4>
+					<p class="my-4">
+						Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto fugit nam facilis saepe
+						minus rerum quos, ipsa molestiae asperiores odit tempore, facere ipsum ducimus expedita quis
+						aliquam natus omnis. Quisquam ipsa fugit eum possimus iste architecto mollitia quasi alias
+						officiis!
+					</p>
+					<button class="btn btn-purple-outline">
+						<div class="dark-bg">
+							<div class="btn-text">
+								REGISTER
+							</div>
+						</div>
+					</button>
+				</div>
+			</div>
+			
+		</div>
+	</section>
+	
+	<section id="Prizes" class="Prizes">
+		<div class="container">
+			<h2 class="py-5 text-center">
+				Prizes
+			</h2>
+			<div class="row py-5">
+				<div class="col-md-6">
+					<div class="dummy-prize"></div>
+				</div>
+				<div class="col-md-6">
+					<div class="dummy-prize"></div>
+				</div>
+				<div class="col-md-6">
+					<div class="dummy-prize"></div>
+				</div>
+				<div class="col-md-6">
+					<div class="dummy-prize"></div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<!-- --------------------------- Sponsors Section ------------------------------------------------ -->
+	<section class="sponsors" id="sponsors">
+		<div class="sponsors-container">
+			<h1 class="sponsor-title">
+				Our <span class="awesome">Awesome</span> Sponsors
+			</h1>
+			<p class="sponsors_description">
+				While all our participants make our event lively. It is our very
+				amazing <span class="about_high">sponsors</span> that
+				<span class="about_high">make it possible.</span>
+			</p>
+			<div class="sponsors-alpha">
+				<h2 class="alpha-title">Platinum Sponsors</h2>
+				<div class="alpha-images">
+					<a href="https://devfolio.co" target="blank">
+						<img src="assets/Sponsors/present/devfolio.svg" style="width: 230px" />
+					</a>
+					<a href="https://polygon.technology/" target="blank">
+						<img src="assets/Sponsors/present/polygon.svg" style="width: 230px" />
+					</a>
+				</div>
+			</div>
+			<div class="sponsors-gold">
+				<h2 class="gold-title">Gold Sponsors</h2>
+				<div class="gold-images">
+					<a href="https://filecoin.io" target="blank">
+						<img src="assets/Sponsors/present/filecoin.svg" style="width: 190px" />
+					</a>
+					<a href="https://tezos.com" target="blank">
+						<img src="assets/Sponsors/present/tezos.svg" alt="" style="width: 190px" />
+					</a>
+					<a href="https://celo.org" target="blank">
+						<img src="assets/Sponsors/present/celo.png" style="width: 150px; height: auto; margin-top: 10px" />
+					</a>
+					<a href="https://www.axure.com/" target="blank">
+						<img src="assets/Sponsors/present/axure.png" style="width: 150px; height: auto" />
+					</a>
+				</div>
+			</div>
+			<div class="sponsors-beta">
+				<h2 class="beta-title">Premium Sponsors</h2>
+				<div class="beta-images">
+					<a href="https://www.interviewcake.com/" target="black">
+						<img src="assets/Sponsors/present/cake_logo_white.svg" style="width: fit-content" />
+					</a>
+					<a href="https://taskade.com/" target="blank">
+						<img src="assets/Sponsors/present/taskade-circle-icon.png" style="width: 60px; height: auto; margin-top: 0px" />
+					</a>
+					<a href="www.wolfram.com/" target="blank">
+						<img src="assets/Sponsors/present/wolfram.svg" alt="" style="width: 130px; height: auto; margin-top: 10px" />
+					</a>
+					<a href="" target="blank">
+						<img src="assets/Sponsors/present/clerky.png" alt="" style="width: 150px; height: auto; margin-top: -5px" />
+					</a>
+					<a href="https://1password.com/tour/" target="blank">
+						<img src="assets/Sponsors/present/1pass.svg" alt="" style="width: 70px; height: auto; margin-top: 0px" />
+					</a>
+				</div>
+			</div>
+			<!-- <div class="sponsors-gold">
+          <h2 class="gold-title">Bronze Sponsors</h2>
+          <div class="gold-images">
+            <a href="https://www.interviewcake.com/" target="black">
+              <img
+                src="assets/Sponsors/present/cake_logo_white.svg"
+                style="width: fit-content"
+              />
+            </a>
+            </a>
+          </div>
+        </div> -->
+			<div class="wrap">
+				<div class="sponsors-gamma">
+					<h2 class="gamma-title">Gamma Sponsors</h2>
+					<div class="gamma-images">
+						<!-- <img src="assets/Sponsors/upgrad.svg" /> -->
+						<a href="https://www.towais.com/" target="blank">
+							<img src="assets/Sponsors/present/towais.png" alt="" style="width: 160px; height: auto" />
+						</a>
+						<a href="http://rosenfeldmedia.com/" target="blank">
+							<img src="assets/Sponsors/present/RM-Logo_logotype.png" alt="" style="width: 160px; height: auto" />
+						</a>
+						<a href="">
+							<img src="assets/Sponsors/past/jetbrains.png" alt="" style="width: 80px; height: auto" />
+						</a>
+						<a href="https://www.bubble.io/" target="blank">
+							<img src="assets/Sponsors/present/Bubble logo.svg" style="width: 110px; height: auto" />
+						</a>
+					</div>
+				</div>
+				<div class="sponsors-delta">
+					<h2 class="delta-title">Delta Sponsors</h2>
+					<div class="delta-images">
+						<a href="https://www.linode.com/" target="blank">
+							<img src="assets/Sponsors/past/Linode-Logo-Black.svg" style="width: 110px; height: auto" />
+						</a>
+						<a href="https://www.sketch.com/try/" target="blank">
+							<img src="assets/Sponsors/present/Sketch-Logo-Dark.png" style="width: 150px; height: auto; margin-top: 8px" />
+						</a>
+						<a href="https://balsamiq.cloud/">
+							<img src="assets/Sponsors/past/balsamiq.svg" style="width: 150px; height: auto; margin-top: 17px" />
+						</a>
+						<a href="https://www.stickeryou.com/" target="blank">
+							<img src="assets/Sponsors/present/sylogo.webp" style="width: 110px; height: auto" />
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="wrap">
+				<div class="authentication">
+					<h2 class="authentication-title">Branding Partner</h2>
+					<a href="https://streamyard.com/" target="blank">
+						<img src="assets/Sponsors/past/streamyard.svg" style="width: 200px; height: auto" class="partner" />
+					</a>
+					<br />
+					<a href="https://givemycertificate.com/" target="blank">
+						<img src="assets/Sponsors/present/GMC LogoS.png" style="padding: 0 10px; width: 80px; height: auto" class="partner" />
+					</a>
+				</div>
+				<div class="community">
+					<h2 class="community-title">Community Partners</h2>
+					<!-- <img src="assets/Sponsors/fold-logo.svg" class="partner" /> -->
+					<img src="assets/Sponsors/community/ieicuiet_logo.png" class="partner" />
+					<img src="assets/Sponsors/community/GDSC Logo chapter amity-mumbai.svg" class="partner" style="width: 200px" />
+					<img src="assets/Sponsors/community/GDSC Logo chapter srcasw.svg" class="partner" style="width: 200px" />
+					<img src="assets/Sponsors/community/GDSC Logo chapter AITAR.svg" class="partner" style="width: 200px" />
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<!-- ------------------------------ Past Events Section ------------------------------------- -->
+	<section id="past_events">
+		<div class="past_events-container">
+			<h1>Past Events</h1>
+			<div id="past_events_wrapper">
+				<div id="past_event_box">
+					<div id="past_event_img">
+						<img src="/assets/Past Events/latest-trends2.webp" />
+					</div>
+					<div id="past_event_detail">
+						<!-- <h3>Abhay Sharma</h3> -->
+						<h5>Speaker Session / Tech Talk</h5>
+						<!-- <p>...</p> -->
+						<p>Latest Trends and Innovations in Network Security</p>
+					</div>
+				</div>
+				<div id="past_event_box">
+					<div id="past_event_img">
+						<img src="/assets/Past Events/expert_tlk.webp" />
+					</div>
+					<div id="past_event_detail">
+						<!-- <h3>Anusha B Rao</h3> -->
+						<h5>Speaker Session / Tech Talk</h5>
+						<!-- <p>...</p> -->
+						<p>Expert Talk on Cloud Computing with AWS</p>
+					</div>
+				</div>
+				<div id="past_event_box">
+					<div id="past_event_img">
+						<img src="/assets/Past Events/latest_trends.webp" />
+					</div>
+					<div id="past_event_detail">
+						<!-- <h3>Ayon Roy</h3> -->
+						<h5>Speaker Session / Tech Talk</h5>
+						<p>
+							Latest Trends in Data Science and Buiseness Analytics
+							<!-- Community @ Kaggle Days</p> -->
+						</p>
+					</div>
+				</div>
+				<div id="past_event_box">
+					<div id="past_event_img">
+						<img src="/assets/Past Events/explore_ml.webp" />
+					</div>
+					<div id="past_event_detail">
+						<h5>Explore ML</h5>
+						<!-- <h1>To be unveiled soon</h1> -->
+						<p>Emerging trends in design and analysis of algorithms</p>
+						<!-- <p>...</p> -->
+					</div>
+				</div>
+				<div id="past_event_box">
+					<div id="past_event_img">
+						<img src="/assets/Past Events/emerging_tech.webp" />
+					</div>
+					<div id="past_event_detail">
+						<h5>Speaker Session / Tech Talk</h5>
+						<!-- <h1>To be unveiled soon</h1> -->
+						<!-- <p>...</p> -->
+						<p>Emerging Technologies in ML & Database Management</p>
+					</div>
+				</div>
+				<div id="past_event_box">
+					<div id="past_event_img">
+						<img src="/assets/Past Events/resume_building.webp" />
+					</div>
+					<div id="past_event_detail">
+						<h5>Speaker Session</h5>
+						<!-- <h1>To be unveiled soon</h1> -->
+						<!-- <p>...</p> -->
+						<p>Resume Building with GeeksForGeeks</p>
+					</div>
+				</div>
+				<div id="past_event_box">
+					<div id="past_event_img">
+						<img src="/assets/Past Events/android_study_jams.webp" />
+					</div>
+					<div id="past_event_detail">
+						<h5>Android Study Jams</h5>
+						<!-- <h1>To be unveiled soon</h1> -->
+						<!-- <p>...</p> -->
+						<p>Android Study Jams 2022</p>
+					</div>
+				</div>
+				<div id="past_event_box">
+					<div id="past_event_img">
+						<img src="/assets/Past Events/developer_bootcamp.jpg" />
+					</div>
+					<div id="past_event_detail">
+						<h5>Speaker Session / Tech Talk</h5>
+						<!-- <h1>To be unveiled soon</h1> -->
+						<!-- <p>...</p> -->
+						<p>Developer Bootcamp</p>
+					</div>
+				</div>
+				<div id="past_event_box">
+					<div id="past_event_img">
+						<img src="/assets/Past Events/is_coe_enough.webp" />
+					</div>
+					<div id="past_event_detail">
+						<h5>Speaker Session / Tech Talk</h5>
+						<!-- <h1>To be unveiled soon</h1> -->
+						<!-- <p>...</p> -->
+						<p>Is Code Enough?</p>
+					</div>
+				</div>
+				<div id="past_event_box">
+					<div id="past_event_img">
+						<img src="/assets/Past Events/octahacks4.jpg" />
+					</div>
+					<div id="past_event_detail">
+						<h5>Hackathon</h5>
+						<!-- <h1>To be unveiled soon</h1> -->
+						<!-- <p>...</p> -->
+						<p>Octahacks 4.0</p>
+					</div>
+				</div>
+				<div id="past_event_box">
+					<div id="past_event_img">
+						<img src="/assets/Past Events/devfest.webp" />
+					</div>
+					<div id="past_event_detail">
+						<h5>Info Session</h5>
+						<!-- <h1>To be unveiled soon</h1> -->
+						<!-- <p>...</p> -->
+						<p>DevFest India</p>
+					</div>
+				</div>
+				<div id="past_event_box">
+					<div id="past_event_img">
+						<img src="/assets/Past Events/hactoberfest.webp" />
+					</div>
+					<div id="past_event_detail">
+						<h5>Speaker Session</h5>
+						<!-- <h1>To be unveiled soon</h1> -->
+						<!-- <p>...</p> -->
+						<p>Hacktoberfest 2021 and Git & Github Workshop</p>
+					</div>
+				</div>
+				<div id="past_event_box">
+					<div id="past_event_img">
+						<img src="/assets/Past Events/gcp.webp" />
+					</div>
+					<div id="past_event_detail">
+						<h5>Speaker Session</h5>
+						<!-- <h1>To be unveiled soon</h1> -->
+						<!-- <p>...</p> -->
+						<p>30 Days of Cloud - Kickoff Session</p>
+					</div>
+				</div>
+				<div id="past_event_box">
+					<div id="past_event_img">
+						<img src="/assets/Past Events/investment_for_students.webp" />
+					</div>
+					<div id="past_event_detail">
+						<h5>Info Session</h5>
+						<!-- <h1>To be unveiled soon</h1> -->
+						<!-- <p>...</p> -->
+						<p>Investment for Students</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<footer>
+		<div class="footer_section">
+			<div class="footer_section_1">
+				<div class="footer_section_1_content">
+					<img src="assets/chitkara_logo.png" alt="Image not available" />
+					<div>
+						<h1>About Chitkara University</h1>
+						<p>
+							Chitkara university is a private university located in
+							Rajpura,Punjab, India. It offers undergraduate programs,
+							post-graduate program and doctoral programs in fields of
+							engineering, management, pharmacy, and education.
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="footer_section_1">
+				<div class="footer_section_1_content">
+					<img src="/assets/logo 1.svg" alt="Image not available" />
+					<div>
+						<h1>About Tenet</h1>
+						<p>
+							Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto fugit nam facilis saepe
+							minus rerum quos, ipsa molestiae asperiores odit tempore, facere ipsum ducimus expedita quis
+							aliquam natus omnis. Quisquam ipsa fugit eum possimus iste architecto mollitia quasi alias
+							officiis!
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="footer_section_2" id="footer">
+				<div class="social_icons">
+					<a href="https://www.instagram.com/gdsc_ciet/" target="_blank"><i class="fab fa-instagram"></i></a>
+					<a href="https://www.linkedin.com/company/gdsc-ciet/mycompany/" target="_blank">
+						<i class="fab fa-linkedin"></i>
+					</a>
+					<a href="https://discord.com/invite/DJzfRCSqwe" target="_blank"><i class="fab fa-discord"></i></a>
+					<a href="https://github.com/DSC-ChitkaraUniv" target="_blank"><i class="fab fa-github"></i></a>
+					<a href="https://twitter.com/gdscciet" target="_blank"><i class="fab fa-twitter"></i></a>
+					<p>For more updates,<br />follow us on all social media.</p>
+				</div>
+			</div>
+		</div>
+		<div class="footer_section_3 mx-auto pb-3">
+			<p>Architected with ♥ by GDSC Core Team</p>
+			<img src="assets/GDSClogo.png" alt="Image not available" />
+		</div>
+	</footer>
+	
+	
+	<!-- =============================Modal====================================== -->
+	<% if(isAuthenticated) {%>
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-fullscreen p-5 rounded">
+			<div class="modal-content bg-purple-dark">
+				
+				
+				<div class="modal-header">
+					<h5 class="modal-title">My Dashboard</h5>
+					<button type="button" class="btn text-light" data-bs-dismiss="modal"><i class="fas - fa-times"></i></button>
+				</div>
+				
+				
+				<div class="modal-body p-5">
+					<div class="row">
+						<div class="col-md-3 text-center">
+							<img class="profile-image" src="<%= user.img %> " alt="Image no Found">
+						</div>
+						<div class="col-md-9">
+							<table class="table table-borderless text-light">
+								<tr>
+									<td>Name</td>
+									<td> : </td>
+									<td><%= user.username %> </td>
+								</tr>
+								<tr>
+									<td>Email</td>
+									<td> : </td>
+									<td><%= user.email %> </td>
+								</tr>
+								<tr>
+									<td>Admin</td>
+									<td> : </td>
+									<td><%= user.isAdmin %> </td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					
+					<div class="row registeredEvents rounded h-100 justify-content-between">
+						<h2 class="Display-5 text-center">My Events</h2>
+						
+						<% for(let i=0;i<user.registeredEvents.events.length;i++) {%>
+						<div class="col-lg-4 col-md-6 col-sm-12 p-4 my-3">
+							<a href="/events/register/<%= user.registeredEvents.events[i].event._id %> ">
+								<div class="Event">
+									<div class="eventSheet">
+										<table class="w-50 table table-borderless text-light">
+											<tr>
+												<td>Event</td>
+												<td> : </td>
+												<td><%= user.registeredEvents.events[i].event.name %> </td>
+											</tr>
+											<tr>
+												<td>My Score</td>
+												<td> : </td>
+												<td><%= user.registeredEvents.events[i].score %> </td>
+											</tr>
+										</table>
+									</div>
+									
+									
+									<img src="https://cvbay.com/wp-content/uploads/2017/03/dummy-image.jpg" alt="Image not available">
+									<div class="eventSheetOnPhone d-xxl-none text-center">
+										<table class="w-100 table table-borderless text-light">
+											<tr>
+												<td>Event</td>
+												<td> : </td>
+												<td><%= user.registeredEvents.events[i].event.name %> </td>
+											</tr>
+											<tr>
+												<td>My Score</td>
+												<td> : </td>
+												<td><%= user.registeredEvents.events[i].score %> </td>
+											</tr>
+										</table>
+									</div>
+								</div>
+							</a>
+							
+							
+						</div>
+						<% } %>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<% } %>
+	
+	
+	
+	
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+	</script>
+	<script src="js/script.js"></script>
+	<script src="js/pwa.js"></script>
 </body>
 
 </html>

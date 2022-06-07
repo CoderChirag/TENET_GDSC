@@ -4,6 +4,7 @@ exports.getLogout = function (req, res) {
 		req.session.destroy(err => {
 			if (err) {
 				console.log(error);
+				res.redirect('/');
 			} else {
 				res.redirect('/');
 			}
