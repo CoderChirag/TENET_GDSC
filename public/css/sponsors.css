@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 .Sponsors {
-=======
-.sponsors {
->>>>>>> 9703a31337ab32c33cbf61f30350a3fa26b9622d
 	margin-top: 30px;
 	background-color: transparent;
 	padding-bottom: 15px;
@@ -10,7 +6,6 @@
 	justify-content: center;
 	margin-bottom: 100px;
 }
-<<<<<<< HEAD
 .Sponsors-container {
 	max-width: 80vw;
 }
@@ -18,15 +13,6 @@
 	cursor: pointer;
 }
 .Sponsors_description {
-=======
-.sponsors-container {
-	max-width: 80vw;
-}
-.sponsors div {
-	cursor: pointer;
-}
-.sponsors_description {
->>>>>>> 9703a31337ab32c33cbf61f30350a3fa26b9622d
 	color: rgb(238, 224, 224);
 	text-align: center;
 }
