@@ -19,10 +19,23 @@ exports.getIndex = (req, res) => {
 		})
 		.then(user => {
 			if (!req.isAuthenticated() || !req.user) {
+				if (req.session.messages) {
+					let message = {};
+					message.info = req.session.messages[0];
+					message.type = 'error';
+					delete req.session.messages;
+					return res.render('index', {
+						isAuthenticated: false,
+						user: {},
+						events: eventsData,
+						message,
+					});
+				}
 				return res.render('index', {
 					isAuthenticated: false,
 					user: {},
 					events: eventsData,
+					message: {},
 				});
 			}
 			console.log('User Data: ');
@@ -33,27 +46,11 @@ exports.getIndex = (req, res) => {
 				isAuthenticated: true,
 				user,
 				events: eventsData,
+				message: {},
 			});
 		})
 		.catch(err => {
 			console.log('Error at main page: ', err);
 			res.redirect('/logout');
 		});
-
-	// if (req.session.messages) {
-	// 	let msg = req.session.messages[0];
-	// 	delete req.session.messages;
-	// 	return res.send(msg);
-	// }
-	// res.render('index', { isAuthenticated: req.isAuthenticated(), user,  });
-};
-
-/** @type {import('express').RequestHandler} */
-exports.getFailure = (req, res) => {
-	let message = '';
-	if (req.session.messages) {
-		message = req.session.messages[0];
-		delete req.session.messages;
-	}
-	res.render('failure', { message });
 };

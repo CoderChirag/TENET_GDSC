@@ -7,7 +7,7 @@ exports.getGoogleAuth = passport.authenticate('google', {
 });
 
 exports.getGoogleAuthRedirect = passport.authenticate('google', {
-	failureRedirect: '/failure',
+	failureRedirect: '/',
 	failureMessage: true,
 });
 

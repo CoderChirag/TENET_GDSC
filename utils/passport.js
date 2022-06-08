@@ -74,7 +74,8 @@ passport.use(
 				.then(user => {
 					if (!user) {
 						return done(null, false, {
-							message: 'You are not registered on Devfolio',
+							message:
+								'You are not registered on Devfolio with this email.',
 							code: 401,
 						});
 					}
