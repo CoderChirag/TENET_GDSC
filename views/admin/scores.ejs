@@ -1,20 +1,77 @@
+<!-- 
+    -------- 4 Data Variables Available for the home page ('/') => 1.) isAuthenticated: Boolean, 2.) events: Array, 3.) user: Object
+    1.) isAuthenticated: true or false
+    2.) events: Data available no matter user is logged in or not
+        [
+            { _id: 629a5d95253d147052113dc8, name: 'test' },
+            { _id: 629a816f2dfc38f2c94b1577, name: 'test2' },
+            { _id: 629b2f20698956b4e1d4f156, name: 'test3' },
+            { _id: 629b2f2f698956b4e1d4f157, name: 'test4' },
+            { _id: 629b2f3e698956b4e1d4f158, name: 'test5' },
+            { _id: 629b2f4b698956b4e1d4f159, name: 'test6' }
+        ]
+    3.) user: empty object if not authenticated
+        {
+            registeredEvents: { 
+                events: [ 
+                    {
+                        _id: 629a8a16485fb41af8da4c53,
+                        score: 2,
+                        event: {
+                            _id: 629a5d95253d147052113dc8,
+                            name: 'test'
+                        },
+                    } ,
+                    {
+                        _id: 629a8a1c485fb41af8da4c59,
+                        score: 5,
+                        event: {
+                            _id: 629a816f2dfc38f2c94b1577,
+                            name: 'test2'
+                        }
+                    }
+                ] 
+            },
+            img: 'https://lh3.googleusercontent.com/a-/AOh14GjSzc-vqvpDpho9J5FanjztwlljAeTHk8RKL8PZ=s96-c',
+            isAdmin: true,
+            _id: 629a5c05bba352690c5c7065,
+            username: 'CHIRAG JAIN',
+            email: 'chirag0174.be20@chitkara.edu.in',
+            date: 2022-06-03T19:07:49.668Z,
+            createdAt: 2022-06-03T19:07:49.672Z,
+            updatedAt: 2022-06-03T22:32:27.883Z,
+            __v: 0
+        }
+    4.) message : empty object if no message
+    {
+        info: "You are not registered to Devfolio with this email"
+        type: "error"
+    }
+    ------- Routes -----------
+    1.) Login Route: GET: /user/auth/google
+    2.) Logout Route: GET: /auth/logout
+    3.) Event Register Route: POST: /events/register/:eventId  => No body required          // Both routes should only be used if user is loggedIn
+    4.) Event Unregister Route: POST: /events/unregister/:eventId => No body required          else user should be redirected to login route
+             // If these routes are accessed without authentication, a report would be generated in the backend automatically .
+ -->
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
 </head>
 
 <body>
-    <form action="/admin/update-scores" method="POST">
-        <input type="email" name="email" id="email" placeholder="email">
-        <input type="text" name="eventId" id="eventId" placeholder="eventId">
-        <input type="number" name="score" id="score" placeholder="score">
-        <button type="submit">Update Score</button>
-    </form>
+	<form action="/admin/update-scores" method="POST">
+		<input type="email" name="email" id="email" placeholder="email">
+		<input type="text" name="eventId" id="eventId" placeholder="eventId">
+		<input type="number" name="score" id="score" placeholder="score">
+		<button type="submit">Update Score</button>
+	</form>
 </body>
 
 </html>
