@@ -108,7 +108,7 @@ nav {
 	padding-left: 3%;
 }
 .dropOn {
-	height: 290px;
+	height: calc(323px + 4rem);
 }
 
 @media screen and (max-width: 935px) {
@@ -126,6 +126,7 @@ nav {
 .main {
 	height: 100vh;
 	color: white;
+	backdrop-filter: blur(2px);
 }
 .main h1 strong {
 	color: var(--purple-shade);
@@ -145,73 +146,10 @@ nav {
 	/* border: solid white; */
 	background-color: white;
 }
-.trackImage1 {
+.trackImage {
 	height: 100%;
 	width: 100%;
-	background-image: url('/assets/Flutter.svg');
-	background-repeat: no-repeat;
-	background-position: center;
-	/* background-size: cover; */
-	/* background-color: white; */
-}
-.trackImage2 {
-	height: 100%;
-	width: 100%;
-	background-image: url('/assets/Gaming.svg');
-	background-repeat: no-repeat;
-	background-position: center;
-	/* background-size: cover; */
-	/* background-color: white; */
-}
-.trackImage3 {
-	height: 100%;
-	width: 100%;
-	background-image: url('/assets/BlockChain.svg');
-	background-repeat: no-repeat;
-	background-position: center;
-	/* background-size: cover; */
-	/* background-color: white; */
-}
-.trackImage4 {
-	height: 100%;
-	width: 100%;
-	background-image: url('/assets/UIDesign.svg');
-	background-repeat: no-repeat;
-	background-position: center;
-	/* background-size: cover; */
-	/* background-color: white; */
-}
-.trackImage5 {
-	height: 100%;
-	width: 100%;
-	background-image: url('/assets/Web.svg');
-	background-repeat: no-repeat;
-	background-position: center;
-	/* background-size: cover; */
-	/* background-color: white; */
-}
-.trackImage6 {
-	height: 100%;
-	width: 100%;
-	background-image: url('/assets/Debate.svg');
-	background-repeat: no-repeat;
-	background-position: center;
-	/* background-size: cover; */
-	/* background-color: white; */
-}
-.trackImage7 {
-	height: 100%;
-	width: 100%;
-	background-image: url('/assets/Quiz.svg');
-	background-repeat: no-repeat;
-	background-position: center;
-	/* background-size: cover; */
-	/* background-color: white; */
-}
-.trackImage8 {
-	height: 100%;
-	width: 100%;
-	background-image: url('/assets/CompetitiveProgramming.svg');
+	background-image: attr(data-image-src);
 	background-repeat: no-repeat;
 	background-position: center;
 	/* background-size: cover; */
@@ -368,6 +306,10 @@ nav {
 	}
 	.footer_section_3 img {
 		width: 180px;
+	}
+	.dummy-div {
+		height: 50vh;
+		width: 100%;
 	}
 }
 @media (max-width: 692px) {
