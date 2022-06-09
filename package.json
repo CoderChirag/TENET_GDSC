@@ -25,5 +25,10 @@
 		"passport-google-oauth20": "^2.0.0",
 		"passport-local": "^1.0.0",
 		"random": "^3.0.6"
+	},
+	"devDependencies": {
+		"compress-images": "^2.0.5",
+		"gifsicle": "^5.2.1",
+		"pngquant-bin": "^6.0.1"
 	}
 }
