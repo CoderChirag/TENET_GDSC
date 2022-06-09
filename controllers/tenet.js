@@ -1,3 +1,5 @@
+const path = require('path');
+
 const Googleuser = require('../models/googleuser');
 const Event = require('../models/event');
 
@@ -53,4 +55,9 @@ exports.getIndex = (req, res) => {
 			console.log('Error at main page: ', err);
 			res.redirect('/logout');
 		});
+};
+
+/** @type {import('express').RequestHandler} */
+exports.getPrivacyPolicy = (req, res) => {
+	res.sendFile(path.join(__dirname, '../views/privacy-policy.html'));
 };
