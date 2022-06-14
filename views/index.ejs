@@ -168,7 +168,7 @@
 					</h3>
 					<p class="my-4"><%= event.description %> </p>
 					<% if(isAuthenticated) {%>
-					<form action="/events/<%= user.registeredEvents.events.some(el => el._id.toString() === event._id.toString()) ? 'unregister' : 'register' %>/<%= event._id %>" method="post">
+					<form action="/events/<%= user.registeredEvents.events.some(el => el.event._id.toString() === event._id.toString()) ? 'unregister' : 'register' %>/<%= event._id %>" method="post">
 						<button class="btn btn-purple-outline" type="submit">
 							<div class="dark-bg">
 								<div class="btn-text">

@@ -77,7 +77,14 @@ exports.postRegisterEvent = (req, res) => {
 		})
 		.then(result => {
 			console.log(result);
-			res.redirect('/');
+			req.session.msg = {
+				type: 'success',
+				info: 'You have successfully registered in the event.',
+			};
+			return req.session.save(err => {
+				if (err) console.log(err);
+				res.redirect('/');
+			});
 		})
 		.catch(err => {
 			console.log('Error in registering the event: ');
@@ -160,7 +167,14 @@ exports.postUnregisterEvent = (req, res) => {
 		})
 		.then(result => {
 			console.log(result);
-			res.redirect('/');
+			req.session.msg = {
+				type: 'success',
+				info: 'You have successfully unregistered from the event.',
+			};
+			return req.session.save(err => {
+				if (err) console.log(err);
+				res.redirect('/');
+			});
 		})
 		.catch(err => {
 			console.log('Error in registering the event: ');

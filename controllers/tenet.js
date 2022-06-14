@@ -9,8 +9,8 @@ exports.getIndex = (req, res) => {
 	let eventsData = {};
 	return Event.find()
 		.then(events => {
-			console.log('Events Data: ');
-			console.log(events);
+			// console.log('Events Data: ');
+			// console.log(events);
 			eventsData = events;
 			if (!req.isAuthenticated() || !req.user) {
 				return {};
@@ -23,14 +23,18 @@ exports.getIndex = (req, res) => {
 			if (!req.isAuthenticated() || !req.user) {
 				if (req.session.messages) {
 					let message = {};
+					console.log(req.session.messages);
 					message.info = req.session.messages[0];
 					message.type = 'error';
 					delete req.session.messages;
-					return res.render('index', {
-						isAuthenticated: false,
-						user: {},
-						events: eventsData,
-						message,
+					return req.session.save(err => {
+						if (err) console.log(err);
+						res.render('index', {
+							isAuthenticated: false,
+							user: {},
+							events: eventsData,
+							message,
+						});
 					});
 				}
 				return res.render('index', {
@@ -40,10 +44,24 @@ exports.getIndex = (req, res) => {
 					message: {},
 				});
 			}
-			console.log('User Data: ');
-			console.log(user);
-			console.log('User registered Events: ');
-			console.log(user.registeredEvents.events);
+			if (req.session.msg) {
+				let msg = req.session.msg;
+				console.log(msg);
+				delete req.session.msg;
+				return req.session.save(err => {
+					if (err) console.log(err);
+					res.render('index', {
+						isAuthenticated: true,
+						user,
+						events: eventsData,
+						message: msg,
+					});
+				});
+			}
+			// console.log('User Data: ');
+			// console.log(user);
+			// console.log('User registered Events: ');
+			// console.log(user.registeredEvents.events);
 			return res.render('index', {
 				isAuthenticated: true,
 				user,
