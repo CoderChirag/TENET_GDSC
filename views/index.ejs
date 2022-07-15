@@ -30,7 +30,7 @@
 	<script src="https://kit.fontawesome.com/a51dece881.js" crossorigin="anonymous"></script>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&display=swap" rel="stylesheet">
 	
 	
 	<link rel="stylesheet" href="/css/style.css">
@@ -56,7 +56,7 @@
 						<% if(isAuthenticated) {%>
 						<li><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Dashboard</a></li>
 						<% }else{ %>
-						<li><a href="/user/auth/google">Login</a></li>
+						<!-- <li><a href="/user/auth/google">Login</a></li> -->
 						<% } %>
 						<li><a href="#Tracks">Tracks</a></li>
 						<!-- <li><a href="#Prizes">Prizes</a></li> -->
@@ -87,7 +87,7 @@
 					<% if(isAuthenticated) {%>
 					<a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Dashboard</a>
 					<% }else{ %>
-					<a href="/user/auth/google">Login</a>
+					<!-- <a href="/user/auth/google">Login</a> -->
 					<% } %>
 					<a href="#Tracks">Tracks</a>
 					<!-- <a href="#Prizes">Prizes</a> -->
@@ -115,9 +115,15 @@
 					
 					<% if(!isAuthenticated) {%>
 					<form method="get" action="/user/auth/google">
-						<button class="btn btn-purple">
-							LogIn
-						</button>
+						<!-- <button class="google-signin-btn">
+							<img src="/assets/google/btn_google_signin_dark_normal_web.png" alt="google_sign_in">
+						</button> -->
+						<div class="google-btn" onclick="this.parentNode.submit()">
+							<div class="google-icon-wrapper">
+								<img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" />
+							</div>
+							<p class="btn-text"><b>Sign in with google</b></p>
+						</div>
 						<!-- <div class="apply-button" data-hackathon-slug="tenet" data-button-theme="dark-inverted" style="height: 44px; width: 312px"></div> -->
 					</form>
 					<% }else{ %>
@@ -178,15 +184,17 @@
 						</button>
 					</form>
 					<% }else{ %>
-					<form action="/user/auth/google" method="get">
-						<button class="btn btn-purple-outline" type="submit">
-							<div class="dark-bg">
-								<div class="btn-text">
+					<!-- <form action="/user/auth/google" method="get"> -->
+					<button class="btn btn-purple-outline" type="submit">
+						<div class="dark-bg">
+							<div class="btn-text">
+								<a href="#" class="btn-text">
 									Register
-								</div>
+								</a>
 							</div>
-						</button>
-					</form>
+						</div>
+					</button>
+					<!-- </form> -->
 					<% } %>
 					
 				</div>
@@ -207,7 +215,7 @@
 				<div class="col-md-6">
 					<div class="dummy-prize"></div>
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-6">zz
 					<div class="dummy-prize"></div>
 				</div>
 				<div class="col-md-6">
@@ -559,6 +567,7 @@
 		</div>
 		<div class="footer_section_3 mx-auto pb-3">
 			<p>Architected with ♥ by GDSC Core Team</p>
+			<a href="/privacy-policy">Privacy Policy</a>
 			<img src="assets/GDSClogo.png" alt="Image not available" />
 		</div>
 	</footer>
